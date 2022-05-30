@@ -196,6 +196,7 @@ const contractSchema = mongoose.Schema({
         required: true,
         default: ""
     },
+    secondaryValidationReward: Number,
     service: String,
     acceptorId: String,
     acceptorName: String,
@@ -1315,6 +1316,7 @@ async function saveContracts() {
             description: contract.title,
             service: contract.service,
             key: contract.key,
+            secondaryValidationReward: contract.secondaryValidationReward,
             acceptorId: contract.acceptor_id,
             acceptorName: contract.acceptor_name,
             appraisalReward: contract.appraisalReward,
@@ -1452,7 +1454,40 @@ async function processContracts(user) {
             contract.appraisalService = appraisal.service;
             contract.appraisalJumps = appraisal.jumps
         }
+        //Guesstimate of whether the contract is valid or not
+        else {
+          let start = " ";
+          let end = " ";
+          //let start = contract.start;
+          if (contract.start_location_id) {
+          start = contract.start_location_id.split(" ")[0] ;
+          }
+          if (contract.end_location_id) {
+          end = contract.end_location_id.split(" ")[0];
+          }
+          const routes = await Routes.findOne({$and: [ {start: {"$regex":"^" + start + "*"}},{destination: {"$regex":"^" + end + "*"}} ] });
+          let validatedReward = 0;
+          let calculatedReward = 0;
+          //If I can find a route validate the reward
+          if (routes) {
+            if (routes.isFlat) {
+                validatedReward = contract.reward / routes.flatPrice;
+            }
+            else {
+            calculatedReward = ((contract.volume * routes.price) + (contract.collateral * (parseFloat(routes.collateralMultiplier)/100)));
+            if (contract.reward != 0) {
+            let rewardDelta = contract.reward  / calculatedReward;
+            validatedReward = rewardDelta;
+          }
+        }
+        }
+        else {
+          validatedReward = -1;
+        }
+          contract.secondaryValidationReward = (Math.round((validatedReward  || 0) * 100) /100);
+        }
         newUserContracts.push(contract);
+
     }
 
     userContracts = newUserContracts;
