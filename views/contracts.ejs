@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="/css/contracts.css">
     <link rel="icon" type="image/png" href="img/logo.png" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/contracts.js" async></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js" type="text/javascript"></script>
+    <script src="/js/contracts.js"></script>
 
 </head>
 
@@ -271,6 +273,7 @@
                     <th>Client</th>
                     <th style="width: 150px;">Date Created</th>
                     <th style="width: 150px;">Time Passed</th>
+                    <th>Pilot Name</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Volume</th>
@@ -318,6 +321,7 @@
             <% if(hours>=1){%>
                     <td><%=hours.toFixed(0)%> hours <%=(minutes%60).toFixed(0)%> minutes</td>
                     <%}%>
+                    <td><%=contract.acceptorName%></td>
             <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
@@ -345,6 +349,7 @@
                     <th>Client</th>
                     <th>Created At</th>
                     <th>Finished At</th>
+                    <th>Pilot Name</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Volume</th>
@@ -385,7 +390,7 @@
                     <td><%=date.toLocaleDateString("en-GB", options)%></td>
                     <td><%=dateCompleted.toLocaleDateString("en-GB", options)%></td>
 
-
+                    <td><%=contract.acceptorName%></td>
                     <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
@@ -471,7 +476,6 @@
             </table>
 
         </div>
-
 
 </body>
 

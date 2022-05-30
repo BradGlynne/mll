@@ -27,6 +27,7 @@ function switchTab(value) {
     })
 }
 $(document).ready(function () {
+  $.fn.dataTable.moment('D MMMM, HH:mm');
     // Setup - add a text input to each footer cell
 var outstandingVolumeSum = 0;
 var outstandingRewardSum = 0;

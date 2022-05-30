@@ -197,6 +197,8 @@ const contractSchema = mongoose.Schema({
         default: ""
     },
     service: String,
+    acceptorId: String,
+    acceptorName: String,
     appraisalCollateral: Number,
     appraisalReward: Number,
     appraisalVolume: Number,
@@ -1313,6 +1315,8 @@ async function saveContracts() {
             description: contract.title,
             service: contract.service,
             key: contract.key,
+            acceptorId: contract.acceptor_id,
+            acceptorName: contract.acceptor_name,
             appraisalReward: contract.appraisalReward,
             appraisalCollateral: contract.appraisalCollateral,
             appraisalVolume: contract.appraisalVolume,
@@ -1396,6 +1400,12 @@ async function processContracts(user) {
                 if (dbContract.status != contract.status) {
                     dbContract.status = contract.status;
                     newUserContracts.push(contract);
+                    try {
+                        contract.acceptor_name = await getCharacterName(contract.acceptor_id);
+                    }
+                    catch (err) {
+                        contract.acceptor_name = "-";
+                    }
                 }
                 break;
             }
@@ -1410,6 +1420,12 @@ async function processContracts(user) {
         }
         catch (err) {
             contract.issuer_name = "-";
+        }
+        try {
+            contract.acceptor_name = await getCharacterName(contract.acceptor_id);
+        }
+        catch (err) {
+            contract.acceptor_name = "-";
         }
         try {
             contract.start_location_id = await getLocationName(contract.start_location_id, user);
