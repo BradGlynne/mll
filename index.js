@@ -1090,7 +1090,7 @@ else {
       price = 0;
 }
 
-    let collateral = (parseInt(price) || 0) + (parseInt(additionalCollateral) || 0);
+    let collateral = (parseDouble(price) || 0) + (parseDouble(additionalCollateral) || 0);
     let reward = 0;
     let servicePricing = "ISK per m<sup>3</sup>"
 
