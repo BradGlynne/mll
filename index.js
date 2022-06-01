@@ -754,7 +754,7 @@ app.post("/", async (req, res) => {
     const data = await response.json();
     let volume, price;
     try {
-        volume = (Math.round((parseInt(data.totalPackagedVolume)  || 0) * 100) /100) + (parseInt(req.body.additionalVolume) || 0 );
+        volume = (Math.round((parseFloat(data.totalPackagedVolume)  || 0) * 100) /100) + (parseFloat(req.body.additionalVolume) || 0 );
         price = Math.round(data.effectivePrices.totalSellPrice);
         errorLines = data.failures;
     }
@@ -762,7 +762,7 @@ app.post("/", async (req, res) => {
         res.send({ "err": "Invalid Input" });
         return;
     }
-    const collateral = (parseInt(price) || 0) + (parseInt(req.body.additionalCollateral) || 0);;
+    const collateral = (parseFloat(price) || 0) + (parseFloat(req.body.additionalCollateral) || 0);;
 
     //get number of jumps
     const { source, destination } = req.body;
@@ -929,7 +929,7 @@ app.post("/custom", async (req, res) => {
     const data = await response.json();
     let volume, price;
     try {
-        volume = (Math.round((parseInt(data.totalPackagedVolume)  || 0) * 100) /100) + (parseInt(req.body.additionalVolume) || 0 );
+        volume = (Math.round((parseFloat(data.totalPackagedVolume)  || 0) * 100) /100) + (parseFloat(req.body.additionalVolume) || 0 );
         price = Math.round(data.effectivePrices.totalSellPrice);
         errorLines = data.failures;
     }
@@ -937,7 +937,7 @@ app.post("/custom", async (req, res) => {
         res.send({ "err": "Invalid Input" });
         return;
     }
-    const collateral = (parseInt(price) || 0) + (parseInt(req.body.additionalCollateral) || 0);
+    const collateral = (parseFloat(price) || 0) + (parseFloat(req.body.additionalCollateral) || 0);
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
     const isRush = req.body.isRush;
@@ -1195,9 +1195,9 @@ app.get("/contracts", authHauler, async (req, res) => {
                     from,
                     to,
                     count: 1,
-                    volume: parseInt(contract.volume),
-                    reward: parseInt(contract.reward),
-                    collateral: parseInt(contract.collateral),
+                    volume: parseFloat(contract.volume),
+                    reward: parseFloat(contract.reward),
+                    collateral: parseFloat(contract.collateral),
                     totalTime: current - Date.parse(contract.date),
                     maxTime: current - Date.parse(contract.date)
                 });
