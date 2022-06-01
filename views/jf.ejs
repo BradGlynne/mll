@@ -51,7 +51,7 @@
         <div class="calculator">
             <h1>JF Calculator</h1>
             <label>Start:
-                <select class="select2-search" name="route" id="start">
+                <select style="width:450px" class="select2-search" name="route" id="start">
                     <% routesAdded = [] %>
                     <% routes.forEach(route=>{ %>
                     <% if(!routesAdded.includes(route.start)){%>
@@ -64,7 +64,7 @@
             </label>
             <div id="destination" style="display: none">
             <label>Destination:
-                <select style="width:300px" class="select2-search" name="route" id="finish">
+                <select style="width:450px" class="select2-search" name="route" id="finish">
                     <option hidden disabled selected value> -- </option>
                 </select>
 
