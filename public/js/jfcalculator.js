@@ -118,6 +118,10 @@ function getRouteDetails(id) {
 
 }
 
+$(document).ready(function() {
+    $('.select2-search').select2();
+});
+
 $("#start").on("change", async function () {
   var div = document.getElementById('destination');
     const routes = await getRouteDetails($(this).val().toString());
