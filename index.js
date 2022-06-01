@@ -356,24 +356,24 @@ app.get("/custom", (req, res) => {
 
 
 
-app.get("/pricing", (req, res) => {
-    let routesPromise = Routes.find({}).exec();
-    let servicesPromise = Service.find({}).exec();
-    Promise.all([routesPromise, servicesPromise]).then((data) => {
-        res.render("pricing.ejs", { routes: data[0], services: data[1]});
+app.get("/jfcalculator", (req, res) => {
+    let otherRoutePromise = Routes.find({routeType: {$ne:"Standard"}}).exec().sort({start: 1, destination: 1});
+    let standardRoutePromise = Routes.find({routeType: "Standard"}).exec();
+    Promise.all([otherRoutePromise, standardRoutePromise]).then((data) => {
+        res.render("jf.ejs", { routes: data[0], otherRoutes: data[1]});
     });
 });
 
-//app.get("/pricing", (req, res) => {
-//    Routes.find({}, (err, routes) => {
-//        if (err) {
-//            res.sendStatus(500);
-//        }
-//        else {
-//            res.render("pricing.ejs", { routes });
-//        }
-//    })
-//});
+// app.get("/jfcalculator", (req, res) => {
+//     Routes.find({}, (err, routes) => {
+//         if (err) {
+//             res.sendStatus(500);
+//         }
+//         else {
+//             res.render("pricing.ejs", { routes });
+//         }
+//     })
+// });
 
 app.get("/jfcalculator", (req, res) => {
     Routes.find({}, (err, routes) => {
