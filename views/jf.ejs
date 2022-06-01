@@ -55,14 +55,14 @@
                   <optgroup label="Standard">
                     <% routesAdded = [] %>
                     <% routes.forEach(route=>{ %>
-                    <% if(!routesAdded.includes(route.start)){%>
+                    <% if(!routesAdded.includes(route.start) && route.routeType=="Standard"){%>
                     <option value='<%=route.start%>'><%=route.start%></option>
                     <% routesAdded.push(route.start) %>
                     <%}%>
                     <% }); %>
                     </optgroup>
                     <option hidden disabled selected value> -- </option>
-                  
+
                 </select>
             </label>
             <div id="destination" style="display: none">
