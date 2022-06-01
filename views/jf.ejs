@@ -50,7 +50,7 @@
         <div class="calculator">
             <h1>JF Calculator</h1>
             <label>Start:
-                <select name="route" id="start">
+                <select class="select2-search" name="route" id="start">
                     <% routesAdded = [] %>
                     <% routes.forEach(route=>{ %>
                     <% if(!routesAdded.includes(route.start)){%>
@@ -185,6 +185,11 @@
     <script src="js/navbar.js" async defer></script>
     <script src="js/copy.js" async defer></script>
     <script src="js/toast.js" async defer></script>
+    <script language="JavaScript">
+    $(document).ready(function() {
+        $('.select2-search').select2();
+    });
+    </script>
 
 </body>
 
