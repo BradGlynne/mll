@@ -1081,6 +1081,7 @@ app.post("/jf", async (req, res) => {
     }
     catch (err) {
         res.send({ "err": "Invalid Input" });
+                console.log(err);
         return;
     }
 
