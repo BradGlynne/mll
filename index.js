@@ -357,7 +357,7 @@ app.get("/custom", (req, res) => {
 
 
 app.get("/jfcalculator", (req, res) => {
-    let otherRoutePromise = Routes.find({routeType: {$ne:"Standard"}}).exec().sort({start: 1, destination: 1});
+    let otherRoutePromise = Routes.find({routeType: {$ne:"Standard"}}).sort({start: 1, destination: 1}).exec();
     let standardRoutePromise = Routes.find({routeType: "Standard"}).exec();
     Promise.all([otherRoutePromise, standardRoutePromise]).then((data) => {
         res.render("jf.ejs", { routes: data[0], otherRoutes: data[1]});
