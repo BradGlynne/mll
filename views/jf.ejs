@@ -50,8 +50,7 @@
         </div>
         <div class="calculator">
             <h1>JF Calculator</h1>
-            <table>
-              <tr><td><label>Start:
+            <label>Start:
                 <select style="width:450px" class="select2-search" name="route" id="start">
                     <% routesAdded = [] %>
                     <% routes.forEach(route=>{ %>
@@ -62,14 +61,14 @@
                     <% }); %>
                     <option hidden disabled selected value> -- </option>
                 </select>
-            </label></td>
-            <td><div id="destination" style="display: none">
+            </label>>
+            <div id="destination" style="display: none">
             <label>Destination:
                 <select style="width:450px" class="select2-search" name="route" id="finish">
                     <option hidden disabled selected value> -- </option>
                 </select>
 
-            </label></td></tr></table>
+            </label>
           </div>
 
 
