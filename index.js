@@ -856,6 +856,8 @@ app.post("/", async (req, res) => {
       console.log
       let lowestPrice = Infinity;
       let bestServiceType = "";
+      jumpCount = 0;
+      lowestSec = 0;
       overrides.forEach(override => {
           if (override.price < lowestPrice) {
               lowestPrice = override.price;
