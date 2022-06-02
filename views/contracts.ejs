@@ -113,17 +113,24 @@
                 <% let rewardDelta = contract.reward/contract.appraisalReward %>
                 <% let collateralDelta = contract.collateral/contract.appraisalCollateral %>
                 <% let volumeDelta = contract.volume/contract.appraisalVolume %>
+                <% let secondaryValidationReward = (contract.secondaryValidationReward || 0) + 0 %>
                 <% let isRouteInvalid =  contract.appraisalService == "Standard Routes" && !(contract.start.includes(contract.appraisalFrom.substring(0, contract.appraisalFrom.indexOf(' '))) && contract.end.includes(contract.appraisalTo.substring(0, contract.appraisalTo.indexOf(' ')))) %>
 
 
                 <% if(!noCode && rewardDelta >= 0.9 && collateralDelta >= 0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05 && !isRouteInvalid){ %>
+                <tr style="background-color: rgba(5, 192, 1, 0.75);">
+                    <%}%>
+                <% if((!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)) || isRouteInvalid){ %>
+                <tr style="background-color: rgba(255, 60, 60, 0.5);">
+                    <%}%>
+                <% if(noCode && (secondaryValidationReward) < 0){ %>
+                <tr style="background-color: rgba(255, 191, 0, 0.15);">
+                    <%}%>
+                <% if(noCode && secondaryValidationReward >= 0.9) { %>
                 <tr style="background-color: rgba(144, 255, 144, 0.5);">
                     <%}%>
-        <% if((!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)) || isRouteInvalid){ %>
-                <tr style="background-color: rgba(255, 113, 113, 0.5);">
-                    <%}%>
-        <% if(noCode){ %>
-                <tr style="background-color: rgba(255, 191, 0, 0.15);">
+                <% if(noCode && (secondaryValidationReward < 0.9 && secondaryValidationReward >= 0)) { %>
+                <tr style="background-color: rgba(255, 130, 130, 0.5);">
                     <%}%>
                     <td><%=sno%></td>
                     <%var options = {  hour:"numeric", minute:"numeric" , month: 'long', day: 'numeric', }; %>
@@ -145,11 +152,22 @@
                     <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
                     <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
-                    <td><%=contract.key%></td>
+                    <%if(noCode && (contract.secondaryValidationReward) < 0){%>
+                      <td>No Route Found</td>
+                      <%}
+                    if(noCode && (contract.secondaryValidationReward) >= 0){%>
+                        <td>Validation Attempted</td>
+                      <%}
+                      if(!noCode){%>
+                      <td><%=contract.key%></td>
+                      <%}%>
                     <%if(isRouteInvalid){%>
                     <td>Incorrect Route</td>
                     <%}%>
-                        <%if(!isRouteInvalid){%>
+                    <%if(noCode){%>
+                    <td><%=secondaryValidationReward.toFixed(2)%> : ? : ?</td>
+                    <%}%>
+                    <%if(!isRouteInvalid && !noCode){%>
                     <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> : <%=volumeDelta.toFixed(2)%></td>
                     <%}%>
 
@@ -215,13 +233,13 @@
                 <% if((!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)) || isRouteInvalid){ %>
                 <tr style="background-color: rgba(255, 60, 60, 0.5);">
                     <%}%>
-                <% if(noCode && (contract.secondaryValidationReward) < 0){ %>
+                <% if(noCode && (secondaryValidationReward) < 0){ %>
                 <tr style="background-color: rgba(255, 191, 0, 0.15);">
                     <%}%>
-                <% if(noCode && contract.secondaryValidationReward >= 0.9) { %>
+                <% if(noCode && secondaryValidationReward >= 0.9) { %>
                 <tr style="background-color: rgba(144, 255, 144, 0.5);">
                     <%}%>
-                <% if(noCode && (contract.secondaryValidationReward < 0.9 && contract.secondaryValidationReward >= 0)) { %>
+                <% if(noCode && (secondaryValidationReward < 0.9 && secondaryValidationReward >= 0)) { %>
                 <tr style="background-color: rgba(255, 130, 130, 0.5);">
                     <%}%>
             <td><%=sno%></td>
@@ -310,17 +328,23 @@
                 <% let rewardDelta = contract.reward/contract.appraisalReward %>
                 <% let collateralDelta = contract.collateral/contract.appraisalCollateral %>
                 <% let volumeDelta = contract.volume/contract.appraisalVolume %>
-
+                <% let secondaryValidationReward = (contract.secondaryValidationReward || 0) + 0 %>
 
                 <% if(!noCode && rewardDelta >= 0.9 && collateralDelta >= 0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05){ %>
-                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                <tr style="background-color: rgba(5, 192, 1, 0.75);">
                     <%}%>
-        <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
-                <tr style="background-color: rgba(255, 113, 113, 0.5);">
+                <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
+                <tr style="background-color: rgba(255, 60, 60, 0.5);">
                     <%}%>
-        <% if(noCode){ %>
+                <% if(noCode && (secondaryValidationReward) < 0){ %>
                 <tr style="background-color: rgba(255, 191, 0, 0.15);">
                     <%}%>
+                <% if(noCode && secondaryValidationReward >= 0.9) { %>
+                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                    <%}%>
+                <% if(noCode && (secondaryValidationReward < 0.9 && secondaryValidationReward >= 0)) { %>
+                <tr style="background-color: rgba(255, 130, 130, 0.5);">
+                  <%}%>
             <td><%=sno%></td>
                     <td><%=contract.issuerName%></td>
 
@@ -343,9 +367,24 @@
                     <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
-                    <td><%=contract.key%></td>
-                    <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> :
-                        <%=volumeDelta.toFixed(2)%></td>
+                    <%if(noCode && (contract.secondaryValidationReward) < 0){%>
+                      <td>No Route Found</td>
+                      <%}
+                    if(noCode && (contract.secondaryValidationReward) >= 0){%>
+                        <td>Validation Attempted</td>
+                      <%}
+                      if(!noCode){%>
+                      <td><%=contract.key%></td>
+                      <%}%>
+                    <%if(isRouteInvalid){%>
+                    <td>Incorrect Route</td>
+                    <%}%>
+                    <%if(noCode){%>
+                    <td><%=secondaryValidationReward.toFixed(2)%> : ? : ?</td>
+                    <%}%>
+                    <%if(!isRouteInvalid && !noCode){%>
+                    <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> : <%=volumeDelta.toFixed(2)%></td>
+                    <%}%>
 
                 </tr>
                 <% sno += 1; %>
@@ -383,17 +422,23 @@
                 <% let rewardDelta = contract.reward/contract.appraisalReward %>
                 <% let collateralDelta = contract.collateral/contract.appraisalCollateral %>
                 <% let volumeDelta = contract.volume/contract.appraisalVolume %>
-
+                <% let secondaryValidationReward = (contract.secondaryValidationReward || 0) + 0 %>
 
                 <% if(!noCode && rewardDelta >= 0.9 && collateralDelta >= 0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05){ %>
-                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                <tr style="background-color: rgba(5, 192, 1, 0.75);">
                     <%}%>
-        <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
-                <tr style="background-color: rgba(255, 113, 113, 0.5);">
+                <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
+                <tr style="background-color: rgba(255, 60, 60, 0.5);">
                     <%}%>
-        <% if(noCode){ %>
+                <% if(noCode && (secondaryValidationReward) < 0){ %>
                 <tr style="background-color: rgba(255, 191, 0, 0.15);">
                     <%}%>
+                <% if(noCode && secondaryValidationReward >= 0.9) { %>
+                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                    <%}%>
+                <% if(noCode && (secondaryValidationReward < 0.9 && secondaryValidationReward >= 0)) { %>
+                <tr style="background-color: rgba(255, 130, 130, 0.5);">
+                  <%}%>
                     <td><%=sno%></td>
                     <td><%=contract.issuerName%></td>
                     <%var options = {  hour:"numeric", minute:"numeric" , month: 'long', day: 'numeric', }; %>
@@ -410,8 +455,24 @@
                     <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
-                    <td><%=contract.key%></td>
+                    <%if(noCode && (contract.secondaryValidationReward) < 0){%>
+                      <td>No Route Found</td>
+                      <%}
+                    if(noCode && (contract.secondaryValidationReward) >= 0){%>
+                        <td>Validation Attempted</td>
+                      <%}
+                      if(!noCode){%>
+                      <td><%=contract.key%></td>
+                      <%}%>
+                    <%if(isRouteInvalid){%>
+                    <td>Incorrect Route</td>
+                    <%}%>
+                    <%if(noCode){%>
+                    <td><%=secondaryValidationReward.toFixed(2)%> : ? : ?</td>
+                    <%}%>
+                    <%if(!isRouteInvalid && !noCode){%>
                     <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> : <%=volumeDelta.toFixed(2)%></td>
+                    <%}%>
 
                 </tr>
                 <% sno += 1; %>
@@ -449,17 +510,23 @@
                 <% let rewardDelta = contract.reward/contract.appraisalReward %>
                 <% let collateralDelta = contract.collateral/contract.appraisalCollateral %>
                 <% let volumeDelta = contract.volume/contract.appraisalVolume %>
-
+                <% let secondaryValidationReward = (contract.secondaryValidationReward || 0) + 0 %>
 
                 <% if(!noCode && rewardDelta >= 0.9 && collateralDelta >= 0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05){ %>
-                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                <tr style="background-color: rgba(5, 192, 1, 0.75);">
                     <%}%>
-        <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
-                <tr style="background-color: rgba(255, 113, 113, 0.5);">
+                <% if(!noCode && !(rewardDelta >= 0.9 && collateralDelta >=0.9 && volumeDelta >=0.95 && volumeDelta <= 1.05)){ %>
+                <tr style="background-color: rgba(255, 60, 60, 0.5);">
                     <%}%>
-        <% if(noCode){ %>
+                <% if(noCode && (secondaryValidationReward) < 0){ %>
                 <tr style="background-color: rgba(255, 191, 0, 0.15);">
                     <%}%>
+                <% if(noCode && secondaryValidationReward >= 0.9) { %>
+                <tr style="background-color: rgba(144, 255, 144, 0.5);">
+                    <%}%>
+                <% if(noCode && (secondaryValidationReward < 0.9 && secondaryValidationReward >= 0)) { %>
+                <tr style="background-color: rgba(255, 130, 130, 0.5);">
+                  <%}%>
             <td><%=sno%></td>
                     <td><%=contract.issuerName%></td>
                     <%var options = {  hour:"numeric", minute:"numeric" , month: 'long', day: 'numeric', }; %>
@@ -473,9 +540,24 @@
                     <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
-                    <td><%=contract.key%></td>
-                    <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> :
-                        <%=volumeDelta.toFixed(2)%></td>
+                    <%if(noCode && (contract.secondaryValidationReward) < 0){%>
+                      <td>No Route Found</td>
+                      <%}
+                    if(noCode && (contract.secondaryValidationReward) >= 0){%>
+                        <td>Validation Attempted</td>
+                      <%}
+                      if(!noCode){%>
+                      <td><%=contract.key%></td>
+                      <%}%>
+                    <%if(isRouteInvalid){%>
+                    <td>Incorrect Route</td>
+                    <%}%>
+                    <%if(noCode){%>
+                    <td><%=secondaryValidationReward.toFixed(2)%> : ? : ?</td>
+                    <%}%>
+                    <%if(!isRouteInvalid && !noCode){%>
+                    <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> : <%=volumeDelta.toFixed(2)%></td>
+                    <%}%>
                     <td><%=contract.status%></td>
                 </tr>
                 <% sno += 1; %>
