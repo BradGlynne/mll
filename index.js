@@ -870,7 +870,9 @@ app.post("/", async (req, res) => {
         priceDetails.price = override.flatRate;
 
         if (req.body.isRush == 'true') {
+console.log(priceDetails.flatRate);
             priceDetails.flatRate += override.rushShippingCharge;
+            console.log(priceDetails.flatRate);
             // if (priceDetails.price < service.minRushPrice) {
             //     priceDetails.price = service.minRushPrice;
             // }
