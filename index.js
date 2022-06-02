@@ -1020,6 +1020,7 @@ app.post("/", async (req, res) => {
     System.find({}, (err, systems) => {
         if (err) {
             res.sendStatus(500);
+            console.log(err);
         }
         else {
             res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, serviceCharges, lowestSec, saved });
