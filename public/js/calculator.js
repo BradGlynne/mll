@@ -134,7 +134,7 @@ function submit() {
         }
         $("#lowest-sec").html(parseFloat(data.lowestSec).toFixed(1));
         $("#service-type").html(bestServiceType);
-        $("#service-price").html(lowestPrice + " ISK");
+        $("#service-price").html(price + " ISK");
           if (isRush) {
             $("#expiration").html("1 day");
             $("#days-to-complete").html("1 day");
