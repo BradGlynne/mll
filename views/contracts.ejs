@@ -142,10 +142,9 @@
                     <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=contract.appraisalJumps%></td>
-                    <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup>
-                    </td>
-                    <td><%=parseInt(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
-                    <td><%=parseInt(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                    <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.key%></td>
                     <%if(isRouteInvalid){%>
                     <td>Incorrect Route</td>
@@ -243,10 +242,9 @@
             <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=contract.appraisalJumps%></td>
-                    <td><%=(Math.round((parseFloat(contract.volume) ) * 100) /100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        m<sup>3</sup></td>
-                    <td><%=parseFloat(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
-                    <td><%=parseFloat(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                    <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <%if(contract.description.split("-")[1]==="R"){%>
                     <td>Yes</td>
                     <%}%>
@@ -341,11 +339,9 @@
                     <td><%=contract.acceptorName%></td>
             <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
-                    <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        m<sup>3</sup></td>
-                    <td><%=parseInt(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
-                    <td><%=parseInt(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK
-                    </td>
+                    <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                    <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
                     <td><%=contract.key%></td>
                     <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> :
@@ -410,12 +406,9 @@
                     <td><%=contract.acceptorName%></td>
                     <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
-                    <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        m<sup>3</sup></td>
-                    <td><%=parseInt(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK
-                    </td>
-                    <td><%=parseInt(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                    <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
                     <td><%=contract.key%></td>
                     <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> : <%=volumeDelta.toFixed(2)%></td>
@@ -476,12 +469,9 @@
                     <td><%=date.toLocaleDateString("en-GB", options)%></td>
                     <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
-                    <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        m<sup>3</sup></td>
-                    <td><%=parseInt(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        ISK</td>
-                    <td><%=parseInt(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                        ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.volume))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                    <td><%=(Math.round((parseFloat(contract.reward))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=(Math.round((parseFloat(contract.collateral))*100)/100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=contract.service%></td>
                     <td><%=contract.key%></td>
                     <td><%=rewardDelta.toFixed(2)%> : <%=collateralDelta.toFixed(2)%> :
