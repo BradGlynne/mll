@@ -206,6 +206,7 @@
                 <% let volumeDelta = contract.volume/contract.appraisalVolume %>
                 <% let secondaryValidationReward = (contract.secondaryValidationReward || 0) + 0 %>
 
+
                 <% let isRouteInvalid =  contract.appraisalService == "Standard Routes" && !(contract.start.includes(contract.appraisalFrom.substring(0, contract.appraisalFrom.indexOf(' '))) && contract.end.includes(contract.appraisalTo.substring(0, contract.appraisalTo.indexOf(' ')))) %>
 
 
