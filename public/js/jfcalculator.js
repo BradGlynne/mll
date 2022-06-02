@@ -126,14 +126,18 @@ $(document).ready(function() {
 });
 
 $("#start").on("change", async function () {
+if ($(this).val().toString()!= "") {
   var div = document.getElementById('destination');
+
     const routes = await getRouteDetails($(this).val().toString());
     $("#finish").html("<option hidden disabled selected value> -- </option>");
     routes.forEach(route => {
         let selection = '<option value=' + route._id + '>' + route.destination + '</option>';
         $("#finish").append(selection);
     });
+
     div.style.display='inline-block';
+    }
 })
 
 $("#finish").on("change", async function () {
