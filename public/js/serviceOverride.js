@@ -171,11 +171,11 @@ $("body").on("input", "#override-start-system", function () {
             data.forEach((system) => {
                 results += "<div class='result start-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
             })
-            $(".add-serviceOverride .search-results").html(results);
+            $(".startOverride .search-results").html(results);
         });
     }
     else {
-        $(".services .serviceOverride .add-overrides-wrapper .add-serviceOverride .input-field .override-start-system .search-results").html("");
+        $(".startOverride .search-results").html("");
     }
 });
 
@@ -187,10 +187,10 @@ $("body").on("input", "#override-destination-system", function () {
             data.forEach((system) => {
                 results += "<div class='result finish-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
             })
-            $(".add-overrides-wrapper .override-destination-system .search-results").html(results);
+            $(".destinationOverride .search-results").html(results);
         });
     }
     else {
-        $(".add-overrides-wrapper .override-destination-system .search-results").html("");
+        $(".destinationOverride .search-results").html("");
     }
 });
