@@ -18,6 +18,7 @@ function clearStuff() {
     $("#min-reward").html("- ISK");
     $("#max-collateral").html("- ISK");
     $("#route-rush-charge").html("- ISK");
+    resetOutputFields();
 }
 
 function submit() {
