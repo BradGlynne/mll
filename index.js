@@ -876,7 +876,6 @@ app.post("/", async (req, res) => {
           collateral
       });
 
-      const saved = await toSave.save();
 console.log(saved);
 
     }
@@ -1017,10 +1016,10 @@ console.log(saved);
         jumps: jumpCount
     });
 
-    const saved = await toSave.save();
+    //const saved = await toSave.save();
 }
     //SEND RESPONSE
-
+const saved = await toSave.save();
     System.find({}, (err, systems) => {
         if (err) {
             res.sendStatus(500);
