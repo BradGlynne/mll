@@ -1038,7 +1038,7 @@ app.post("/", async (req, res) => {
             console.log(err);
         }
         else {
-            res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, serviceCharges, lowestSec, saved });
+            res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, bestServiceType, lowestSec, saved });
         }
     })
 }
