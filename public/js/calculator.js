@@ -115,7 +115,7 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType, serviceCharges, overrideCharges } = data;
+        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType, serviceCharges } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
@@ -149,7 +149,6 @@ function submit() {
               $("#days-to-complete").html("3 days");
           }
           console.log(data.serviceCharges.length);
-          console.log(data.overrideCharges.length);
          if (data.serviceCharges.length == 0) {
             $(".parse-status").html("No route found matching the volume size");
             $(".parse-status").addClass("error");
