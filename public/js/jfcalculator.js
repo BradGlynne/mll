@@ -127,7 +127,7 @@ $(document).ready(function() {
 
 $("#start").on("change", async function () {
   console.log($(this).val());
-if ($(this).val().toString()!= "") {
+if (!$(this).val()) {
   var div = document.getElementById('destination');
 
     const routes = await getRouteDetails($(this).val().toString());
