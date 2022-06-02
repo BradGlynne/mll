@@ -146,6 +146,8 @@ var perJumpTable = $('#per-jump-overrides').DataTable({
     },
 });
 
+var table = $('#per-jump-overrides').DataTable();
+
 
 });
 
