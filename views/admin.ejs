@@ -162,6 +162,35 @@
 
             </div>
             <button class='update' onclick="updateServices()">Update</button>
+
+            <br>
+            <div class="serviceOverride">
+              <h2>Add Service Override</h2>
+              <div class="add-overrides-wrapper">
+              <label class='add-serviceOverride'>Route Type :<br><select name="type" id="type">
+                    <option value="Freighter">Freighter</option>
+                    <option value="Blockade Runner">Blockade Runner</option>
+                    <option value="Deep Space Transport">Deep Space Transport</option>
+                    </select>
+              </label> <br>
+              <label class='add-serviceOverride'>Origin : <input type="text" placeholder="Name" name="start-system"
+                      id="start-system"></label>
+              <label class='add-serviceOverride'>Destination : <input type="text" placeholder="Name" name="destination-system"
+                      id="destination-system"></label>
+              <label class='add-serviceOverride'>Maximum Volume : <input type="text" placeholder="Maximum Volume" name="max-volume"
+                      id="max-volume"></label>
+              <label class='add-serviceOverride'>Maximum Collateral : <input type="text" placeholder="Maximum Collateral"
+                      name="max-collateral" id="max-collateral"></label>
+              <label class='add-serviceOverride'>Flat Rate : <input type="text" placeholder="Flat Charge" name="system"
+                      id="Flatrate"></label>
+              <label class='add-serviceOverride'>Rush Shipping Charge : <input type="text" placeholder="Rush Shipping Charge"
+                      name="system" id="rush-shipping-charge"></label>
+              <label class='add-serviceOverride' style="display: block;">Enable Rush Shipping: <input type="checkbox"
+                      id="rush-shipping"></label>
+
+              <button onclick="addServiceOverride()">Add Override</button>
+            </div>
+            </div>
         </div>
     </div>
 

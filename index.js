@@ -261,6 +261,17 @@ const settingsSchema = mongoose.Schema({
     }
 });
 
+const serviceOverrideSchema = mongoose.Schema({
+    start: String,
+    end: String,
+    type: String,
+    maxVolume: Number,
+    maxCollateral: Number,
+    flatRate: Number,
+    isRush: Boolean,
+    rushShippingCharge: Number
+});
+
 contractSchema.plugin(uniqueValidator);
 
 const Appraisal = db.model("Appraisal", appraisalSchema);
@@ -272,6 +283,7 @@ const Characters = db.model("Character", characterSchema);
 const Contracts = db.model("Contract", contractSchema);
 const Haulers = db.model("Hauler", haulerSchema);
 const Settings = db.model("Setting", settingsSchema);
+const ServiceOverride = db.model("ServiceOverride", serviceOverrideSchema);
 
 const systemsData = JSON.parse(fs.readFileSync(__dirname + "/data/systems.json"));
 
@@ -520,6 +532,70 @@ app.post("/routes/get/name/", async (req, res) => {
         }
         else {
             res.send(route);
+        }
+    })
+});
+
+app.post("/servicesOverride/add", authAdmin, async (req, res) => {
+    const { type, startSystem, destinationSystem, maxVolume, maxCollateral, flatRate, isRush, rushShippingCharge } = req.body;
+    let isError = false;
+    try {
+        const newServiceOverride = new ServiceOverride({
+            type: type,
+            start: startSystem,
+            end: destinationSystem,
+            maxVolume: parseInt(maxVolume),
+            maxCollateral: parseInt(maxCollateral),
+            flatRate: parseInt(flatRate),
+            rushShippingCharge: parseInt(rushShippingCharge),
+            isRush
+        });
+        await newServiceOverride.save();
+    }
+    catch (err) {
+        isError = true;
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+    if (!isError) {
+        res.sendStatus(200);
+    }
+});
+
+
+app.post("/servicesOverride/edit", authAdmin, async (req, res) => {
+    const { id, type, startSystem, destinationSystem, maxVolume, maxCollateral, flatRate, isRush, rushShippingCharge } = req.body;
+    let isError = false;
+
+    let editedServiceOverride = {}
+    editedServiceOverride.type = type;
+    editedServiceOverride.start = startSystem;
+    editedServiceOverride.end = destinationSystem;
+    editedServiceOverride.maxVolume = parseInt(maxVolume);
+    editedServiceOverride.maxCollateral = parseInt(maxCollateral);
+    editedServiceOverride.flatRate = parseInt(flatRate);
+    editedServiceOverride.rushShippingCharge = parseInt(rushShippingCharge);
+    editedServiceOverride.isRush = isRush;
+
+    ServiceOverride.findOneAndUpdate({ _id: id }, editedServiceOverride, async (err, route) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            res.sendStatus(200);
+        }
+    })
+});
+
+app.post("/servicesOverride/remove", authAdmin, async (req, res) => {
+    const { id } = req.body;
+    ServiceOverride.deleteOne({ _id: id }, (err) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            res.sendStatus(200);
         }
     })
 });
