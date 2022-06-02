@@ -880,8 +880,6 @@ app.post("/", async (req, res) => {
 
           //save to db
 
-          let lowestPrice = Infinity;
-
           overrideCharges.forEach(override => {
               if (override.flatRate < lowestPrice) {
                   lowestPrice = override.flatRate;
