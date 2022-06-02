@@ -121,7 +121,13 @@ function submit() {
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
         $("#collateral").html(collateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
         $("#volume").html(parseInt(volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " m<sup>3</sup>");
+        if (jumpCount == 0)
+        {
+          $("#jump-count").html("N/A - Flat Rate");
+        }
+        else {
         $("#jump-count").html(jumpCount);
+        }
         if (isRush) {
             $("#rush-status").html("Yes");
         }
