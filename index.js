@@ -871,7 +871,7 @@ app.post("/", async (req, res) => {
 
         if (req.body.isRush == 'true') {
           console.log(overrideCharges.flatRate);
-            priceDetails.flatRate += override.rushShippingCharge;
+            overrideCharges.flatRate += override.rushShippingCharge;
             console.log(overrideCharges.flatRate);
             // if (priceDetails.price < service.minRushPrice) {
             //     priceDetails.price = service.minRushPrice;
@@ -906,10 +906,8 @@ app.post("/", async (req, res) => {
       System.find({}, (err, systems) => {
           if (err) {
               res.sendStatus(500);
-              console.log(err);
           }
           else {
-            console.log(bestServiceType);
               res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, bestServiceType, lowestSec, saved });
           }
       })
