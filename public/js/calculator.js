@@ -115,7 +115,7 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType } = data;
+        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType, serviceCharges, overrideCharges } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
@@ -149,15 +149,15 @@ function submit() {
               $("#days-to-complete").html("3 days");
           }
 
-        // if (data.serviceCharges.length == 0) {
-        //     $(".parse-status").html("No route found matching the volume size");
-        //     $(".parse-status").addClass("error");
-        //     $(".parse-status").show();
-        //     resetOutputFields();
-        //     $("#service-type").html("No Service Available");
-        //     $("#service-price").html("-");
-        //     return;
-        // }
+         if (data.serviceCharges.length == 0 && data.overrideCharges.length == 0) {
+            $(".parse-status").html("No route found matching the volume size");
+            $(".parse-status").addClass("error");
+            $(".parse-status").show();
+            resetOutputFields();
+            $("#service-type").html("No Service Available");
+            $("#service-price").html("-");
+            return;
+        }
         // else {
         //
         //     bestServiceType = "";
