@@ -10,6 +10,8 @@ function clearStuff() {
     $("input").val("");
     $("input").prop('checked', false);
     $('.select2-search').val(null).trigger('change');
+    var div = document.getElementById('destination');
+    div.style.display='none';
 }
 
 function submit() {
