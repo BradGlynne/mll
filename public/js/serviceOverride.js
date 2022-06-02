@@ -104,7 +104,7 @@ function toggleOverrideRush(id) {
 
     $.ajax({
         type: "POST",
-        url: "/serviceOverride/toggleRush",
+        url: "/servicesOverride/toggleRush",
         data: data,
         cache: false,
         crossDomain: true,
