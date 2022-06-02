@@ -851,6 +851,8 @@ app.post("/", async (req, res) => {
     console.log(volume);
     console.log(collateral);
     console.log(req.body.isRush);
+    let jumpCount = 0;
+    let lowestSec = 0;
     if (overrides.length > 0) {
       console.log("Found at least one matching override")
       console.log
