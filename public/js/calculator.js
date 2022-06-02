@@ -115,7 +115,7 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, collateral, volume, serviceCharges } = data;
+        const { sourceName, destinationName, jumpCount, price, collateral, volume, bestServiceType } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
