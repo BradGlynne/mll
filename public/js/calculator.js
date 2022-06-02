@@ -149,7 +149,7 @@ function submit() {
               $("#days-to-complete").html("3 days");
           }
          if (data.serviceCharges.length == 0) {
-            $(".parse-status").html("No route found matching the volume/collateral size");
+            $(".parse-status").html("No route found matching the volume/collateral requirements");
             $(".parse-status").addClass("error");
             $(".parse-status").show();
             resetOutputFields();
