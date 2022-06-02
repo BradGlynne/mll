@@ -9,7 +9,7 @@ function clearStuff() {
     $("#item-list").val("");
     $("input").val("");
     $("input").prop('checked', false);
-    $(".select2-search").empty();
+    $(".select2-search").select2("val", "");;
 }
 
 function submit() {
@@ -120,7 +120,7 @@ function getRouteDetails(id) {
 }
 
 $(document).ready(function() {
-    $('.select2-search').select2({dropdownAutoWidth : true});
+    $('.select2-search').select2({dropdownAutoWidth : true}, placeholder: "--");
 });
 
 $("#start").on("change", async function () {
