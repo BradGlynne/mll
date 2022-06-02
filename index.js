@@ -333,16 +333,6 @@ function authHauler(req, res, next) {
 
 
 
-//app.get("/perjumpcalculator", authAdmin, (req, res) => {
-//    let systemPromise = System.find({}).exec();
-//    let servicesPromise = Services.find({}).exec();
-//    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise]).then((data) => {
-//        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3] });
-//    });
-//});
-
-
-
 app.get("/perjumpcalculator", (req, res) => {
     System.find({}, (err, systems) => {
         if (err) {
@@ -376,17 +366,6 @@ app.get("/jfcalculator", (req, res) => {
         res.render("jf.ejs", { routes: data[0], otherRoutes: data[1]});
     });
 });
-
-// app.get("/jfcalculator", (req, res) => {
-//     Routes.find({}, (err, routes) => {
-//         if (err) {
-//             res.sendStatus(500);
-//         }
-//         else {
-//             res.render("pricing.ejs", { routes });
-//         }
-//     })
-// });
 
 app.get("/jfcalculator", (req, res) => {
     Routes.find({}, (err, routes) => {
@@ -600,6 +579,26 @@ app.post("/servicesOverride/remove", authAdmin, async (req, res) => {
         }
     })
 });
+
+
+app.post("/servicesOverride/toggleRush", authAdmin, async (req, res) => {
+    const { id } = req.body;
+    ServiceOverride.findOne({ _id: id }, async (err, override) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            if (override.isRush) {
+                override.isRush = false;
+            }
+            else {
+                override.isRush = true;
+            }
+            await override.save();
+            res.sendStatus(200);
+        }
+    })
+})
 
 app.post("/routes/add", authAdmin, async (req, res) => {
     const { routeType, startSystem, destinationSystem, minReward, maxJFVolume, maxJFCollateral, flatPrice, price, rushShippingCharge, collateralMultiplier, isFlat, isRush } = req.body;

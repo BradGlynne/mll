@@ -224,16 +224,16 @@
                             <%=serviceOverride.flatRate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK <strong>FLAT</strong>
                     </td>
                         <td>
-                            <%= serviceOverride.maxVolume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> m<sup>3</sup>
+                            <%=serviceOverride.maxVolume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> m<sup>3</sup>
                         </td>
                         <td>
-                            <%= serviceOverride.maxCollateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
+                            <%=serviceOverride.maxCollateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
                         </td>
                         <td>
-                            <%= serviceOverride.isRush ? "Yes" : "No" %>
+                            <%=serviceOverride.isRush ? "Yes" : "No" %>
                         </td>
                         <td>
-                            <%= serviceOverride.rushShippingCharge.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
+                            <%=serviceOverride.rushShippingCharge.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
                         </td>
                         <td>
                             <button onclick="removeOverride('<%=serviceOverride.id%>')">Remove</button>
