@@ -96,7 +96,7 @@ var table = $('#per-jump-overrides').DataTable({
     orderCellsTop: true,
     fixedHeader: true,
     paging: false,
-    order: [[9, 'desc']],
+    order: [[1, 'asc']],
     initComplete: function () {
         var api = this.api();
 
