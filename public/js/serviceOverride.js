@@ -171,7 +171,7 @@ $("body").on("input", "#override-start-system", function () {
             data.forEach((system) => {
                 results += "<div class='result start-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
             })
-            $(".add-overrides-wrapper .override-start-system .search-results").html(results);
+            $(".override-start-system .search-results").html(results);
         });
     }
     else {
@@ -187,10 +187,10 @@ $("body").on("input", "#override-destination-system", function () {
             data.forEach((system) => {
                 results += "<div class='result finish-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
             })
-            $(".calculator .finish .search-results").html(results);
+            $(".add-overrides-wrapper .override-destination-system .search-results").html(results);
         });
     }
     else {
-        $(".calculator .finish .search-results").html("");
+        $(".add-overrides-wrapper .override-destination-system .search-results").html("");
     }
 });
