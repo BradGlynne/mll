@@ -1,7 +1,7 @@
 function addServiceOverride() {
     const type = $(".add-overrides-wrapper #type").val();
-    const startSystem = $(".add-overrides-wrapper #start-system").val();
-    const destinationSystem = $(".add-overrides-wrapper #destination-system").val();
+    const startSystem = $(".add-overrides-wrapper #override-start-system").val();
+    const destinationSystem = $(".add-overrides-wrapper #override-destination-system").val();
     const maxVolume = $(".add-overrides-wrapper #max-volume").val();
     const maxCollateral = $(".add-overrides-wrapper #max-collateral").val();
     const flatRate = $(".add-overrides-wrapper #Flatrate").val();
@@ -160,3 +160,37 @@ function editOverride() {
     });
 
 }
+
+
+
+$("body").on("input", "#override-start-system", function () {
+    const name = $(this).val().toString().trim().toLowerCase();
+    if (name.length >= 3) {
+        $.get("/system/search/" + name, (data) => {
+            results = ""
+            data.forEach((system) => {
+                results += "<div class='result start-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
+            })
+            $(".override-start-system .search-results").html(results);
+        });
+    }
+    else {
+        $(".override-start-system .search-results").html("");
+    }
+});
+
+$("body").on("input", "#override-destination-system", function () {
+    const name = $(this).val().toString().trim().toLowerCase();
+    if (name.length >= 3) {
+        $.get("/system/search/" + name, (data) => {
+            results = ""
+            data.forEach((system) => {
+                results += "<div class='result finish-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
+            })
+            $(".calculator .finish .search-results").html(results);
+        });
+    }
+    else {
+        $(".calculator .finish .search-results").html("");
+    }
+});
