@@ -120,7 +120,7 @@ function getRouteDetails(id) {
 }
 
 $(document).ready(function() {
-    $('.select2-search').select2({dropdownAutoWidth : true}, placeholder: "--");
+    $('.select2-search').select2({dropdownAutoWidth : true, placeholder: "--"});
 });
 
 $("#start").on("change", async function () {
