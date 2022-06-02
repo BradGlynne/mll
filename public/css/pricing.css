@@ -65,6 +65,15 @@
  padding-bottom: 10px;
 }
 
+
+#per-jump-overrides_filter {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+ font-size: larger;
+ padding-bottom: 10px;
+}
+
 .filters th input{
   width: 70%;
 
