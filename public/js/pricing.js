@@ -92,7 +92,7 @@ $('#per-jump-overrides thead tr')
     .addClass('filters')
     .appendTo('#per-jump-overrides thead');
 
-var table = $('#per-jump-overrides').DataTable({
+var perJumpTable = $('#per-jump-overrides').DataTable({
     orderCellsTop: true,
     fixedHeader: true,
     paging: false,
