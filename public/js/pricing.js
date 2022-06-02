@@ -87,8 +87,6 @@ document.getElementById("standard").click();
 document.getElementById("intraDrone").click();
 
 
-});
-
 $('#per-jump-overrides thead tr')
     .clone(true)
     .addClass('filters')
@@ -147,6 +145,11 @@ var table = $('#per-jump-overrides').DataTable({
             });
     },
 });
+
+
+});
+
+
 
 
 //function intraRoutes(checkbox)
