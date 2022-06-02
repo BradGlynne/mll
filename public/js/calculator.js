@@ -59,6 +59,7 @@ function clearStuff() {
     $("input").val("");
     $("input").prop('checked', false);
     $(".search-results").html("");
+    resetOutputFields();
 
 }
 
