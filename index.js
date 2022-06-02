@@ -867,17 +867,17 @@ app.post("/", async (req, res) => {
                 type: override.type,
                 flatRate: 0
         };
-        overrideCharges.flatRate = override.flatRate;
+        priceDetails.flatRate = override.flatRate;
 
         if (req.body.isRush == 'true') {
-          console.log(overrideCharges.flatRate);
-            overrideCharges.flatRate += override.rushShippingCharge;
-            console.log(overrideCharges.flatRate);
+          console.log(priceDetails.flatRate);
+            priceDetails.flatRate += override.rushShippingCharge;
+            console.log(priceDetails.flatRate);
             // if (priceDetails.price < service.minRushPrice) {
             //     priceDetails.price = service.minRushPrice;
             // }
         }
-        overrideCharges.push(overrideCharges);
+        overrideCharges.push(priceDetails);
       });
 
           //save to db
