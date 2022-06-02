@@ -243,7 +243,7 @@
             <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=contract.appraisalJumps%></td>
-                    <td><%=parseFloat(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                    <td><%=(Math.round((parseFloat(contract.volume) ) * 100) /100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                         m<sup>3</sup></td>
                     <td><%=parseFloat(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <td><%=parseFloat(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
