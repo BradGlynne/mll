@@ -86,6 +86,7 @@ const { options } = require('request');
 const db = mongoose.createConnection(process.env.DB_HOST);
 
 const appraisalSchema = mongoose.Schema({
+    appraisalDate: Date,
     key: String,
     from: String,
     to: String,
@@ -893,6 +894,7 @@ app.post("/", async (req, res) => {
 
     const toSave = new Appraisal({
         key: randomstring.generate(8),
+        appraisalDate: Date.now(),
         from: sourceName,
         to: destinationName,
         service: bestServiceType,
@@ -1143,6 +1145,7 @@ else {
 
             const toSave = new Appraisal({
                 key: randomstring.generate(8),
+                appraisalDate: Date.now(),
                 from: route.start,
                 to: route.destination,
                 service: "Standard Routes",
