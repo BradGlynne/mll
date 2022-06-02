@@ -191,8 +191,8 @@
               <button onclick="addServiceOverride()">Add Override</button>
             </div>
             <h2>Existing Service Overrides</h2>
-            <div class="route-list-wrapper dataTables_wrapper dt-bootstrap4 no-footer">
-                <table id="route-list" class="route-list table sortable dataTable" style="margin-top: 20px;width: 100%">
+            <div class="override-list-wrapper dataTables_wrapper dt-bootstrap4 no-footer">
+                <table id="override-list" class="override-list table sortable dataTable" style="margin-top: 20px;width: 100%">
                   <thead>
                     <tr>
                         <th>Type</th>
@@ -479,6 +479,10 @@
                                 order: [],
                                 paging: true}
                         );
+            $('#override-list').DataTable({
+                                order: [],
+                                paging: true}
+                                    );
         } );
     </script>
 
