@@ -132,7 +132,6 @@ $(document).ready(function() {
 });
 
 $("#start").on("change", async function () {
-  console.log($(this).val());
 if ($(this).val() != null) {
   var div = document.getElementById('destination');
 
