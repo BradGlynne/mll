@@ -845,6 +845,7 @@ app.post("/", async (req, res) => {
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
     let rush = req.body.isRush;
+    let saved = "";
     const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
     console.log(sourceName);
     console.log(destinationName);
@@ -865,7 +866,7 @@ app.post("/", async (req, res) => {
           }
       });
 
-      const toSave = new Appraisal({
+      toSave = new Appraisal({
           key: randomstring.generate(8),
           appraisalDate: Date.now(),
           from: sourceName,
@@ -875,7 +876,7 @@ app.post("/", async (req, res) => {
           reward: lowestPrice,
           collateral
       });
-
+saved = await toSave.save();
 console.log(saved);
 
     }
@@ -1016,10 +1017,9 @@ console.log(saved);
         jumps: jumpCount
     });
 
-    //const saved = await toSave.save();
+    saved = await toSave.save();
 }
     //SEND RESPONSE
-const saved = await toSave.save();
     System.find({}, (err, systems) => {
         if (err) {
             res.sendStatus(500);
