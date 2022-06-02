@@ -179,6 +179,12 @@ $("body").on("input", "#override-start-system", function () {
     }
 });
 
+
+$("body").on("click", ".start-result", function () {
+    $(".startOverride .search-results").html("");
+    $("#override-start-system").val($(this).attr("name"));
+});
+
 $("body").on("input", "#override-destination-system", function () {
     const name = $(this).val().toString().trim().toLowerCase();
     if (name.length >= 3) {
@@ -193,4 +199,10 @@ $("body").on("input", "#override-destination-system", function () {
     else {
         $(".destinationOverride .search-results").html("");
     }
+});
+
+
+$("body").on("click", ".finish-result", function () {
+    $(".destinationOverride .search-results").html("");
+    $("#override-destination-system").val($(this).attr("name"));
 });
