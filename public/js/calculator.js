@@ -150,7 +150,7 @@ function submit() {
           }
           console.log(data.serviceCharges.length);
           console.log(data.overrideCharges.length);
-         if (data.serviceCharges.length == 0 && data.overrideCharges.length == 0) {
+         if (data.serviceCharges.length == 0) {
             $(".parse-status").html("No route found matching the volume size");
             $(".parse-status").addClass("error");
             $(".parse-status").show();

@@ -858,7 +858,7 @@ app.post("/", async (req, res) => {
       let bestServiceType = "";
       jumpCount = 0;
       lowestSec = 0;
-      var overrideCharges = [];
+      var serviceCharges = [];
 
 
 
@@ -877,12 +877,12 @@ app.post("/", async (req, res) => {
             //     priceDetails.price = service.minRushPrice;
             // }
         }
-        overrideCharges.push(priceDetails);
+        serviceCharges.push(priceDetails);
       });
 
           //save to db
 
-          overrideCharges.forEach(override => {
+          serviceCharges.forEach(override => {
               if (override.flatRate < lowestPrice) {
                   lowestPrice = override.flatRate;
                   bestServiceType = override.type;
@@ -908,7 +908,7 @@ app.post("/", async (req, res) => {
               res.sendStatus(500);
           }
           else {
-              res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, overrideCharges, lowestSec, saved });
+              res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
           }
       })
 
