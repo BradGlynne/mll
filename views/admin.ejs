@@ -210,13 +210,13 @@
                     <% serviceOverride.forEach(serviceOverride=>{ %>
                     <tr>
                         <td>
-                            <%=serviceOverride.Type%>
+                            <%=serviceOverride.type%>
                         </td>
                         <td>
                             <%=serviceOverride.start%>
                         </td>
                         <td>
-                            <%=serviceOverride.destination %>
+                            <%=serviceOverride.end %>
                         </td>
                         <td>
                             <%=serviceOverride.flatRate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK <strong>FLAT</strong>
