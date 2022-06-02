@@ -243,10 +243,10 @@
             <td class="start"><%=contract.start%></td>
                     <td><%=contract.end%></td>
                     <td><%=contract.appraisalJumps%></td>
-                    <td><%=parseInt(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                    <td><%=parseFloat(contract.volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                         m<sup>3</sup></td>
-                    <td><%=parseInt(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
-                    <td><%=parseInt(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=parseFloat(contract.reward).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                    <td><%=parseFloat(contract.collateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                     <%if(contract.description.split("-")[1]==="R"){%>
                     <td>Yes</td>
                     <%}%>
