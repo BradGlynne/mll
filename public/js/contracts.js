@@ -93,9 +93,9 @@ var outstandingCollateralSum = 0;
 
     $('#outstanding tbody').on('click', 'tr', function () {
 
-        var outstandingVolume = parseInt(($(this).find('td:eq(7)').last().html()).replace(/,|\sm\p{No}/gu, ''));
-        var outstandingReward = parseInt(($(this).find('td:eq(8)').last().html()).replace(/,|\sISK/gu, ''));
-        var outstandingCollateral = parseInt(($(this).find('td:eq(9)').last().html()).replace(/,|\sISK/gu, ''));
+        var outstandingVolume = parseFloat(($(this).find('td:eq(7)').last().html()).replace(/,|\sm\p{No}/gu, ''));
+        var outstandingReward = parseFloat(($(this).find('td:eq(8)').last().html()).replace(/,|\sISK/gu, ''));
+        var outstandingCollateral = parseFloat(($(this).find('td:eq(9)').last().html()).replace(/,|\sISK/gu, ''));
         if($(this).hasClass('selected')) {
            outstandingVolumeSum -= outstandingVolume;
            outstandingRewardSum -= outstandingReward;
