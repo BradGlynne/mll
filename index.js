@@ -969,10 +969,8 @@ app.post("/", async (req, res) => {
     services.forEach(service => {
         if (parseInt(volume) <= service.maxVolume && eligibleServices.includes(service.name)) {
             eligibleServicesByVolume.push(service.name);
-            console.log(volume);
         }
         else {
-          console.log(service.name);
             //volume exceeded , pass
         }
     })
