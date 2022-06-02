@@ -895,6 +895,7 @@ app.post("/", async (req, res) => {
         key: randomstring.generate(8),
         from: sourceName,
         to: destinationName,
+        service: bestServiceType,
         volume,
         reward: lowestPrice,
         collateral,
