@@ -858,7 +858,7 @@ app.post("/", async (req, res) => {
       let bestServiceType = "";
       jumpCount = 0;
       lowestSec = 0;
-      var overrideCharges[];
+      var overrideCharges = [];
 
 
 
