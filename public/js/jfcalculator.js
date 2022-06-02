@@ -126,7 +126,7 @@ $(document).ready(function() {
 });
 
 $("#start").on("change", async function () {
-  console.log($(this).val().toString());
+  console.log($(this).val());
 if ($(this).val().toString()!= "") {
   var div = document.getElementById('destination');
 
