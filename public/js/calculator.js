@@ -148,7 +148,6 @@ function submit() {
               $("#expiration").html("7 days");
               $("#days-to-complete").html("3 days");
           }
-          console.log(data.serviceCharges.length);
          if (data.serviceCharges.length == 0) {
             $(".parse-status").html("No route found matching the volume size");
             $(".parse-status").addClass("error");
