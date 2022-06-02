@@ -844,7 +844,8 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
-    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$lte: volume}, maxCollateral: {$lte: collateral}, isRush: req.body.isRush}).exec();
+    let rush = req.body.isRush;
+    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
     console.log(sourceName);
     console.log(destinationName);
     console.log(volume);
@@ -852,6 +853,7 @@ app.post("/", async (req, res) => {
     console.log(req.body.isRush);
     if (overrides.length > 0) {
       console.log("Found at least one matching override")
+      console.log
       let lowestPrice = Infinity;
 
       overrides.forEach(override => {
