@@ -162,6 +162,90 @@
 
             </div>
             <button class='update' onclick="updateServices()">Update</button>
+
+            <hr>
+            <div class="serviceOverride">
+              <h2>Add Service Override</h2>
+              <div class="add-overrides-wrapper">
+              <label class='add-serviceOverride'>Route Type :<br><select name="type" id="type">
+                    <option value="Freighter">Freighter</option>
+                    <option value="Blockade Runner">Blockade Runner</option>
+                    <option value="Deep Space Transport">Deep Space Transport</option>
+                    </select>
+              </label> <br>
+              <label class='add-serviceOverride startOverride'>Origin : <div class="input-field"><input type="text" placeholder="Name" name="override-start-system"
+                      id="override-start-system"><div class="search-results"></div></div></label>
+              <label class='add-serviceOverride destinationOverride'>Destination : <div class="input-field"><input type="text" placeholder="Name" name="override-destination-system"
+                      id="override-destination-system"><div class="search-results"></div></div></label>
+              <label class='add-serviceOverride'>Maximum Volume : <input type="text" placeholder="Maximum Volume" name="max-volume"
+                      id="max-volume"></label>
+              <label class='add-serviceOverride'>Maximum Collateral : <input type="text" placeholder="Maximum Collateral"
+                      name="max-collateral" id="max-collateral"></label>
+              <label class='add-serviceOverride'>Flat Rate : <input type="text" placeholder="Flat Charge" name="system"
+                      id="Flatrate"></label>
+              <label class='add-serviceOverride'>Rush Shipping Charge : <input type="text" placeholder="Rush Shipping Charge"
+                      name="system" id="rush-shipping-charge"></label>
+              <label class='add-serviceOverride' style="display: block;">Enable Rush Shipping: <input type="checkbox"
+                      id="rush-shipping"></label>
+
+              <button onclick="addServiceOverride()">Add Override</button>
+            </div>
+            <br>
+            <br>
+            <h2>Existing Service Overrides</h2>
+            <div class="override-list-wrapper dataTables_wrapper dt-bootstrap4 no-footer">
+                <table id="override-list" class="override-list table sortable dataTable" style="margin-top: 20px;width: 100%">
+                  <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Start</th>
+                        <th>Finish</th>
+                        <th>Price</th>
+                        <th>Max Volume</th>
+                        <th>Max Collateral</th>
+                        <th>Rush Shipping</th>
+                        <th>Rush Shipping Charge</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% serviceOverride.forEach(serviceOverride=>{ %>
+                    <tr>
+                        <td>
+                            <%=serviceOverride.type%>
+                        </td>
+                        <td>
+                            <%=serviceOverride.start%>
+                        </td>
+                        <td>
+                            <%=serviceOverride.end %>
+                        </td>
+                        <td>
+                            <%=serviceOverride.flatRate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK <strong>FLAT</strong>
+                    </td>
+                        <td>
+                            <%=serviceOverride.maxVolume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> m<sup>3</sup>
+                        </td>
+                        <td>
+                            <%=serviceOverride.maxCollateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
+                        </td>
+                        <td>
+                            <%=serviceOverride.isRush ? "Yes" : "No" %>
+                        </td>
+                        <td>
+                            <%=serviceOverride.rushShippingCharge.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> ISK
+                        </td>
+                        <td>
+                            <button onclick="removeOverride('<%=serviceOverride.id%>')">Remove</button>
+                            <button onclick="toggleOverrideRush('<%=serviceOverride.id%>')">Toggle Rush Shipping</button>
+
+                        </td>
+                    </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+            </div>
+            </div>
         </div>
     </div>
 
@@ -390,12 +474,17 @@
     <script src="js/haulers.js" async defer></script>
     <script src="js/settings.js" async defer></script>
     <script src="js/jf.js" async defer></script>
+    <script src="js/serviceOverride.js" async defer></script>
     <script language="JavaScript">
     $(document).ready(function() {
             $('#route-list').DataTable({
                                 order: [],
                                 paging: true}
                         );
+            $('#override-list').DataTable({
+                                order: [],
+                                paging: true}
+                                    );
         } );
     </script>
 

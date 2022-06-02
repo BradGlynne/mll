@@ -143,18 +143,18 @@ label {
 }
 
 .route-list {
-    border: 1px solid #111;
+    /*border: 1px solid #111;*/
     border-collapse: collapse;
     text-align: center;
     table-layout: auto;
 }
 
-.route-list td,
+/*.route-list td,
 .route-list th {
     padding: 10px 25px;
     border: 1px solid #111;
-    /*min-width: 150px;*/
-}
+    /*min-width: 150px;
+}*/
 
 .mailCheckbox {
     display: inline-block;
@@ -195,4 +195,31 @@ label {
     position: relative;
     bottom: .4em;
     /* this is a better value for different fonts! */
+}
+
+
+
+
+.search-results {
+    position: absolute;
+    max-height: 150px;
+    width: 250px;
+    background-color: #fff;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.search-results .result {
+    padding: 2px;
+    border: 1px solid #333;
+    border-width: 0px 1px 0px;
+    cursor: pointer;
+}
+
+.search-results .result:hover {
+    background-color: #999;
+}
+
+ .search-results .result:last-child {
+    border-bottom-width: 1px;
 }

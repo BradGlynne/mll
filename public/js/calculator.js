@@ -115,14 +115,19 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, collateral, volume, serviceCharges } = data;
+        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType, serviceCharges } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
         $("#collateral").html(collateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
         $("#volume").html(parseInt(volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " m<sup>3</sup>");
+        if (jumpCount == 0)
+        {
+          $("#jump-count").html("N/A - Flat Rate");
+        }
+        else {
         $("#jump-count").html(jumpCount);
-        let bestServiceType;
+        }
         if (isRush) {
             $("#rush-status").html("Yes");
         }
@@ -133,9 +138,18 @@ function submit() {
             data.lowestSec = 0.0
         }
         $("#lowest-sec").html(parseFloat(data.lowestSec).toFixed(1));
-
-        if (data.serviceCharges.length == 0) {
-            $(".parse-status").html("No route found matching the volume size");
+        $("#service-type").html(bestServiceType);
+        $("#service-price").html(Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
+          if (isRush) {
+            $("#expiration").html("1 day");
+            $("#days-to-complete").html("1 day");
+          }
+          else {
+              $("#expiration").html("7 days");
+              $("#days-to-complete").html("3 days");
+          }
+         if (data.serviceCharges.length == 0) {
+            $(".parse-status").html("No route found matching the volume/collateral requirements");
             $(".parse-status").addClass("error");
             $(".parse-status").show();
             resetOutputFields();
@@ -143,32 +157,32 @@ function submit() {
             $("#service-price").html("-");
             return;
         }
-        else {
-
-            bestServiceType = "";
-            let lowestPrice = Infinity;
-
-            serviceCharges.forEach(service => {
-                if (service.price < lowestPrice) {
-                    lowestPrice = service.price;
-                    bestServiceType = service.name;
-                }
-            });
-
-            lowestPrice = Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-            $("#service-type").html(bestServiceType);
-            $("#service-price").html(lowestPrice + " ISK");
-
-            if (isRush) {
-                $("#expiration").html("1 day");
-                $("#days-to-complete").html("1 day");
-            }
-            else {
-                $("#expiration").html("7 days");
-                $("#days-to-complete").html("3 days");
-            }
-        }
+        // else {
+        //
+        //     bestServiceType = "";
+        //     let lowestPrice = Infinity;
+        //
+        //     serviceCharges.forEach(service => {
+        //         if (service.price < lowestPrice) {
+        //             lowestPrice = service.price;
+        //             bestServiceType = service.name;
+        //         }
+        //     });
+        //
+        //     lowestPrice = Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //
+        //     $("#service-type").html(bestServiceType);
+        //     $("#service-price").html(lowestPrice + " ISK");
+        //
+        //     if (isRush) {
+        //         $("#expiration").html("1 day");
+        //         $("#days-to-complete").html("1 day");
+        //     }
+        //     else {
+        //         $("#expiration").html("7 days");
+        //         $("#days-to-complete").html("3 days");
+        //     }
+        // }
         let shipmentType = isRush ? "R" : "S"
         $("#description").html(bestServiceType + "-" + shipmentType + "-" + data.saved.key);
     });

@@ -86,6 +86,7 @@ const { options } = require('request');
 const db = mongoose.createConnection(process.env.DB_HOST);
 
 const appraisalSchema = mongoose.Schema({
+    appraisalDate: Date,
     key: String,
     from: String,
     to: String,
@@ -260,6 +261,17 @@ const settingsSchema = mongoose.Schema({
     }
 });
 
+const serviceOverrideSchema = mongoose.Schema({
+    start: String,
+    end: String,
+    type: String,
+    maxVolume: Number,
+    maxCollateral: Number,
+    flatRate: Number,
+    isRush: Boolean,
+    rushShippingCharge: Number
+});
+
 contractSchema.plugin(uniqueValidator);
 
 const Appraisal = db.model("Appraisal", appraisalSchema);
@@ -271,6 +283,7 @@ const Characters = db.model("Character", characterSchema);
 const Contracts = db.model("Contract", contractSchema);
 const Haulers = db.model("Hauler", haulerSchema);
 const Settings = db.model("Setting", settingsSchema);
+const ServiceOverride = db.model("ServiceOverride", serviceOverrideSchema);
 
 const systemsData = JSON.parse(fs.readFileSync(__dirname + "/data/systems.json"));
 
@@ -319,16 +332,13 @@ function authHauler(req, res, next) {
 //AUTH MIDDLEWARE
 
 
-
-//app.get("/perjumpcalculator", authAdmin, (req, res) => {
-//    let systemPromise = System.find({}).exec();
-//    let servicesPromise = Services.find({}).exec();
-//    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise]).then((data) => {
-//        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3] });
-//    });
-//});
-
-
+app.get("/pricing", (req, res) => {
+    let routesPromise = Routes.find({}).exec();
+    let servicesPromise = Service.find({}).exec();
+    Promise.all([routesPromise, servicesPromise]).then((data) => {
+        res.render("pricing.ejs", { routes: data[0], services: data[1]});
+    });
+});
 
 app.get("/perjumpcalculator", (req, res) => {
     System.find({}, (err, systems) => {
@@ -363,17 +373,6 @@ app.get("/jfcalculator", (req, res) => {
         res.render("jf.ejs", { routes: data[0], otherRoutes: data[1]});
     });
 });
-
-// app.get("/jfcalculator", (req, res) => {
-//     Routes.find({}, (err, routes) => {
-//         if (err) {
-//             res.sendStatus(500);
-//         }
-//         else {
-//             res.render("pricing.ejs", { routes });
-//         }
-//     })
-// });
 
 app.get("/jfcalculator", (req, res) => {
     Routes.find({}, (err, routes) => {
@@ -445,9 +444,10 @@ app.get("/admin", authAdmin, (req, res) => {
     let systemPromise = System.find({}).exec();
     let routePromise = Routes.find({}).exec();
     let haulerPromise = Haulers.find({}).exec();
+    let serviceOverridePromise = ServiceOverride.find({}).exec();
     let settingsPromise = Settings.findOne({}).exec();
-    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise]).then((data) => {
-        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3] });
+    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise, serviceOverridePromise]).then((data) => {
+        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3], serviceOverride: data[4] });
     });
 });
 
@@ -522,6 +522,90 @@ app.post("/routes/get/name/", async (req, res) => {
         }
     })
 });
+
+app.post("/servicesOverride/add", authAdmin, async (req, res) => {
+    const { type, startSystem, destinationSystem, maxVolume, maxCollateral, flatRate, isRush, rushShippingCharge } = req.body;
+    let isError = false;
+    try {
+        const newServiceOverride = new ServiceOverride({
+            type: type,
+            start: startSystem,
+            end: destinationSystem,
+            maxVolume: parseInt(maxVolume),
+            maxCollateral: parseInt(maxCollateral),
+            flatRate: parseInt(flatRate),
+            rushShippingCharge: parseInt(rushShippingCharge),
+            isRush
+        });
+        await newServiceOverride.save();
+    }
+    catch (err) {
+        isError = true;
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+    if (!isError) {
+        res.sendStatus(200);
+    }
+});
+
+
+app.post("/servicesOverride/edit", authAdmin, async (req, res) => {
+    const { id, type, startSystem, destinationSystem, maxVolume, maxCollateral, flatRate, isRush, rushShippingCharge } = req.body;
+    let isError = false;
+
+    let editedServiceOverride = {}
+    editedServiceOverride.type = type;
+    editedServiceOverride.start = startSystem;
+    editedServiceOverride.end = destinationSystem;
+    editedServiceOverride.maxVolume = parseInt(maxVolume);
+    editedServiceOverride.maxCollateral = parseInt(maxCollateral);
+    editedServiceOverride.flatRate = parseInt(flatRate);
+    editedServiceOverride.rushShippingCharge = parseInt(rushShippingCharge);
+    editedServiceOverride.isRush = isRush;
+
+    ServiceOverride.findOneAndUpdate({ _id: id }, editedServiceOverride, async (err, route) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            res.sendStatus(200);
+        }
+    })
+});
+
+app.post("/servicesOverride/remove", authAdmin, async (req, res) => {
+    const { id } = req.body;
+    ServiceOverride.deleteOne({ _id: id }, (err) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            res.sendStatus(200);
+        }
+    })
+});
+
+
+app.post("/servicesOverride/toggleRush", authAdmin, async (req, res) => {
+    const { id } = req.body;
+    ServiceOverride.findOne({ _id: id }, async (err, override) => {
+        if (err) {
+            res.send({ err });
+        }
+        else {
+            if (override.isRush) {
+                override.isRush = false;
+            }
+            else {
+                override.isRush = true;
+            }
+            await override.save();
+            res.sendStatus(200);
+        }
+    })
+})
 
 app.post("/routes/add", authAdmin, async (req, res) => {
     const { routeType, startSystem, destinationSystem, minReward, maxJFVolume, maxJFCollateral, flatPrice, price, rushShippingCharge, collateralMultiplier, isFlat, isRush } = req.body;
@@ -767,6 +851,76 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
+    let rush = req.body.isRush;
+    let rushCriteria = "";
+    let overrides = "";
+    if (rush){
+      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}, isRush: true}).exec();
+    }
+    else {
+      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
+    }
+    if (overrides.length > 0) {
+      let lowestPrice = Infinity;
+      let bestServiceType = "";
+      jumpCount = 0;
+      lowestSec = 0;
+      var serviceCharges = [];
+
+
+
+      overrides.forEach(override => {
+        let priceDetails = {
+                type: override.type,
+                flatRate: 0
+        };
+        priceDetails.flatRate = override.flatRate;
+
+        if (req.body.isRush == 'true') {
+          console.log(priceDetails.flatRate);
+            priceDetails.flatRate += override.rushShippingCharge;
+            console.log(priceDetails.flatRate);
+            // if (priceDetails.price < service.minRushPrice) {
+            //     priceDetails.price = service.minRushPrice;
+            // }
+        }
+        serviceCharges.push(priceDetails);
+      });
+
+          //save to db
+
+          serviceCharges.forEach(override => {
+              if (override.flatRate < lowestPrice) {
+                  lowestPrice = override.flatRate;
+                  bestServiceType = override.type;
+              }
+          });
+
+      const toSave = new Appraisal({
+          key: randomstring.generate(8),
+          appraisalDate: Date.now(),
+          from: sourceName,
+          to: destinationName,
+          service: bestServiceType,
+          volume,
+          reward: lowestPrice,
+          collateral
+      });
+
+      const saved = await toSave.save();
+      //SEND RESPONSE
+
+      System.find({}, (err, systems) => {
+          if (err) {
+              res.sendStatus(500);
+          }
+          else {
+              res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
+          }
+      })
+
+    }
+    else {
     const response1 = await fetch('https://esi.evetech.net/latest/route/' + source + '/' + destination + '/?datasource=tranquility&flag=shortest', {
         method: 'get',
     });
@@ -893,8 +1047,10 @@ app.post("/", async (req, res) => {
 
     const toSave = new Appraisal({
         key: randomstring.generate(8),
+        appraisalDate: Date.now(),
         from: sourceName,
         to: destinationName,
+        service: bestServiceType,
         volume,
         reward: lowestPrice,
         collateral,
@@ -902,17 +1058,19 @@ app.post("/", async (req, res) => {
     });
 
     const saved = await toSave.save();
-
     //SEND RESPONSE
 
     System.find({}, (err, systems) => {
         if (err) {
             res.sendStatus(500);
+            console.log(err);
         }
         else {
-            res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, serviceCharges, lowestSec, saved });
+            res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
         }
     })
+}
+
 });
 
 //BG - 250522 - addition for custom contract requests
@@ -1142,6 +1300,7 @@ else {
 
             const toSave = new Appraisal({
                 key: randomstring.generate(8),
+                appraisalDate: Date.now(),
                 from: route.start,
                 to: route.destination,
                 service: "Standard Routes",
