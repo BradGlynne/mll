@@ -332,6 +332,13 @@ function authHauler(req, res, next) {
 //AUTH MIDDLEWARE
 
 
+app.get("/pricing", (req, res) => {
+    let routesPromise = Routes.find({}).exec();
+    let servicesPromise = Service.find({}).exec();
+    Promise.all([routesPromise, servicesPromise]).then((data) => {
+        res.render("pricing.ejs", { routes: data[0], services: data[1]});
+    });
+});
 
 app.get("/perjumpcalculator", (req, res) => {
     System.find({}, (err, systems) => {
