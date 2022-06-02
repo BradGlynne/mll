@@ -133,42 +133,52 @@ function submit() {
             data.lowestSec = 0.0
         }
         $("#lowest-sec").html(parseFloat(data.lowestSec).toFixed(1));
+        $("#service-type").html(bestServiceType);
+        $("#service-price").html(lowestPrice + " ISK");
+          if (isRush) {
+            $("#expiration").html("1 day");
+            $("#days-to-complete").html("1 day");
+          }
+          else {
+              $("#expiration").html("7 days");
+              $("#days-to-complete").html("3 days");
+          }
 
-        if (data.serviceCharges.length == 0) {
-            $(".parse-status").html("No route found matching the volume size");
-            $(".parse-status").addClass("error");
-            $(".parse-status").show();
-            resetOutputFields();
-            $("#service-type").html("No Service Available");
-            $("#service-price").html("-");
-            return;
-        }
-        else {
-
-            bestServiceType = "";
-            let lowestPrice = Infinity;
-
-            serviceCharges.forEach(service => {
-                if (service.price < lowestPrice) {
-                    lowestPrice = service.price;
-                    bestServiceType = service.name;
-                }
-            });
-
-            lowestPrice = Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-            $("#service-type").html(bestServiceType);
-            $("#service-price").html(lowestPrice + " ISK");
-
-            if (isRush) {
-                $("#expiration").html("1 day");
-                $("#days-to-complete").html("1 day");
-            }
-            else {
-                $("#expiration").html("7 days");
-                $("#days-to-complete").html("3 days");
-            }
-        }
+        // if (data.serviceCharges.length == 0) {
+        //     $(".parse-status").html("No route found matching the volume size");
+        //     $(".parse-status").addClass("error");
+        //     $(".parse-status").show();
+        //     resetOutputFields();
+        //     $("#service-type").html("No Service Available");
+        //     $("#service-price").html("-");
+        //     return;
+        // }
+        // else {
+        //
+        //     bestServiceType = "";
+        //     let lowestPrice = Infinity;
+        //
+        //     serviceCharges.forEach(service => {
+        //         if (service.price < lowestPrice) {
+        //             lowestPrice = service.price;
+        //             bestServiceType = service.name;
+        //         }
+        //     });
+        //
+        //     lowestPrice = Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //
+        //     $("#service-type").html(bestServiceType);
+        //     $("#service-price").html(lowestPrice + " ISK");
+        //
+        //     if (isRush) {
+        //         $("#expiration").html("1 day");
+        //         $("#days-to-complete").html("1 day");
+        //     }
+        //     else {
+        //         $("#expiration").html("7 days");
+        //         $("#days-to-complete").html("3 days");
+        //     }
+        // }
         let shipmentType = isRush ? "R" : "S"
         $("#description").html(bestServiceType + "-" + shipmentType + "-" + data.saved.key);
     });
