@@ -115,7 +115,7 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, collateral, volume, bestServiceType } = data;
+        const { sourceName, destinationName, jumpCount, lowestPrice, collateral, volume, bestServiceType } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
@@ -133,7 +133,7 @@ function submit() {
         }
         $("#lowest-sec").html(parseFloat(data.lowestSec).toFixed(1));
         $("#service-type").html(bestServiceType);
-        $("#service-price").html(Math.round((price)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
+        $("#service-price").html(Math.round((lowestPrice)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
           if (isRush) {
             $("#expiration").html("1 day");
             $("#days-to-complete").html("1 day");

@@ -908,7 +908,7 @@ app.post("/", async (req, res) => {
               res.sendStatus(500);
           }
           else {
-              res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, bestServiceType, lowestSec, saved });
+              res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, lowestSec, saved });
           }
       })
 
@@ -1059,7 +1059,7 @@ app.post("/", async (req, res) => {
             console.log(err);
         }
         else {
-            res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, bestServiceType, lowestSec, saved });
+            res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, lowestSec, saved });
         }
     })
 }
