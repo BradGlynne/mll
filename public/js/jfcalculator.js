@@ -9,8 +9,7 @@ function clearStuff() {
     $("#item-list").val("");
     $("input").val("");
     $("input").prop('checked', false);
-    $('#start').val([]);
-    $('start').val([]);
+    $('.select2-search').val(null).trigger('change');
 }
 
 function submit() {
