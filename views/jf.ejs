@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/toast.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 </head>
 
@@ -48,7 +51,8 @@
         <div class="calculator">
             <h1>JF Calculator</h1>
             <label>Start:
-                <select name="route" id="start">
+                <select style="width:450px" class="select2-search" name="route" id="start">
+                  <optgroup label="Standard">
                     <% routesAdded = [] %>
                     <% routes.forEach(route=>{ %>
                     <% if(!routesAdded.includes(route.start)){%>
@@ -56,12 +60,23 @@
                     <% routesAdded.push(route.start) %>
                     <%}%>
                     <% }); %>
+                    </optgroup>
+                    <optgroup label="Intra-Drones (Flat Rates)">
+                      <% routesAdded = [] %>
+                      <% otherRoutes.forEach(route=>{ %>
+                      <% if(!routesAdded.includes(route.start)){%>
+                      <option value='<%=route.start%>'><%=route.start%></option>
+                      <% routesAdded.push(route.start) %>
+                      <%}%>
+                      <% }); %>
+                    </optgroup>
                     <option hidden disabled selected value> -- </option>
+
                 </select>
             </label>
             <div id="destination" style="display: none">
             <label>Destination:
-                <select name="route" id="finish">
+                <select style="width:450px" class="select2-search" name="route" id="finish">
                     <option hidden disabled selected value> -- </option>
                 </select>
 

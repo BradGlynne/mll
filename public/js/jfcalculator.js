@@ -9,6 +9,16 @@ function clearStuff() {
     $("#item-list").val("");
     $("input").val("");
     $("input").prop('checked', false);
+    $('.select2-search').val(null).trigger('change');
+    var div = document.getElementById('destination');
+    div.style.display='none';
+    $("#route-price").html("- ISK");
+    $("#max-volume").html("- M<sup>3</sup");
+    $("#route-rush").html("N/A");
+    $("#min-reward").html("- ISK");
+    $("#max-collateral").html("- ISK");
+    $("#route-rush-charge").html("- ISK");
+    resetOutputFields();
 }
 
 function submit() {
@@ -118,19 +128,28 @@ function getRouteDetails(id) {
 
 }
 
+$(document).ready(function() {
+    $('.select2-search').select2({dropdownAutoWidth : true, placeholder: "--"});
+});
+
 $("#start").on("change", async function () {
+if ($(this).val() != null) {
   var div = document.getElementById('destination');
+
     const routes = await getRouteDetails($(this).val().toString());
     $("#finish").html("<option hidden disabled selected value> -- </option>");
     routes.forEach(route => {
         let selection = '<option value=' + route._id + '>' + route.destination + '</option>';
         $("#finish").append(selection);
     });
+
     div.style.display='inline-block';
+    }
 })
 
 $("#finish").on("change", async function () {
     const id = $("#finish").val();
+    if ($(this).val() != null) {
     $.post("/routes/get", { id }, response => {
         if (response.err) {
             alert("Error" + JSON.stringify(response.err));
@@ -159,7 +178,7 @@ $("#finish").on("change", async function () {
 
         }
     });
-})
+}})
 
 
 

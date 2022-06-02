@@ -59,6 +59,7 @@ function clearStuff() {
     $("input").val("");
     $("input").prop('checked', false);
     $(".search-results").html("");
+    resetOutputFields();
 
 }
 
@@ -77,7 +78,7 @@ function submit() {
 
     isLoading(true);
 
-    setTimeout(function(){isLoading(false,"An unknown error occured");},5000);
+    //setTimeout(function(){isLoading(false,"An unknown error occured");},5000);
 
 
     $.post("/", { source, destination, isRush, itemList, additionalVolume, additionalCollateral }, (data) => {
