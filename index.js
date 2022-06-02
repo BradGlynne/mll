@@ -335,8 +335,9 @@ function authHauler(req, res, next) {
 app.get("/pricing", (req, res) => {
     let routesPromise = Routes.find({}).exec();
     let servicesPromise = Service.find({}).exec();
-    Promise.all([routesPromise, servicesPromise]).then((data) => {
-        res.render("pricing.ejs", { routes: data[0], services: data[1]});
+    let servicesOverridePromise = ServiceOverride.find({}).exec();
+    Promise.all([routesPromise, servicesPromise, servicesOverridePromise]).then((data) => {
+        res.render("pricing.ejs", { routes: data[0], services: data[1], serviceOverrides: data[2]});
     });
 });
 

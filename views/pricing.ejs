@@ -109,6 +109,39 @@
               <%})%>
             </tbody>
           </table>
+          <br>
+          <h2>Fixed BR/DST Prices</h2>
+              <table id="per-jump-overrides" class="table">
+                <tr>
+                  <th>Ship Type</th>
+                  <th>From</th>
+                  <th></th>
+                  <th>To</th>
+                  <th>Volume Limit</th>
+                  <th>Collateral Limit</th>
+                  <th>Route Pricing</th>
+                  <th>Rush Shipping Surcharge</th>
+                <tr>
+                  <% serviceOverrides.forEach((serviceoverrides)=>{%>
+                  <tr>
+                      <td><%=serviceoverrides.type%></td>
+                      <td><%=serviceoverrides.start%></td>
+                      <td>-></td>
+                      <td><%=serviceoverrides.end%></td>
+                      <td><%=parseInt(serviceoverrides.maxVolume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> m<sup>3</sup></td>
+                      <td><%=parseInt(serviceoverrides.maxCollateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                      <td><%=parseInt(serviceoverrides.flatRate).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK Flat Rate</td>
+                      <%if(!serviceoverrides.isRush){%>
+                        <td>Not Available</td>
+                        <%}
+                        else {%>
+                        <td><%=parseInt(serviceoverrides.maxCollateral).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
+                      <%}%>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+              <br>
       <h2>Jump Freighter Routes</h2>
       <!-- add class p-switch -->
         <div class="pretty p-switch p-fill" style="float: right">
