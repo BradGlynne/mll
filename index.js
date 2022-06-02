@@ -886,6 +886,7 @@ app.post("/", async (req, res) => {
               console.log(err);
           }
           else {
+            console.log(bestServiceType);
               res.send({ errorLines, systems, sourceName, destinationName, volume, price, collateral, jumpCount, bestServiceType, lowestSec, saved });
           }
       })
