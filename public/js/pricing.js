@@ -61,6 +61,7 @@ $(document).ready(function () {
 
     $.fn.dataTable.ext.search.push(
   function( settings, searchData, index, rowData, counter ) {
+    console.log(settings.nTable.id);
     var routes = $('input:checkbox[name="routeType"]:checked').map(function() {
       return this.value;
     }).get();
