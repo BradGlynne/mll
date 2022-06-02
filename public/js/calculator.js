@@ -122,7 +122,6 @@ function submit() {
         $("#collateral").html(collateral.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
         $("#volume").html(parseInt(volume).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " m<sup>3</sup>");
         $("#jump-count").html(jumpCount);
-        let bestServiceType;
         if (isRush) {
             $("#rush-status").html("Yes");
         }
