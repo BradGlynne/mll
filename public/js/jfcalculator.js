@@ -142,7 +142,7 @@ if ($(this).val().toString()!= "") {
 
 $("#finish").on("change", async function () {
     const id = $("#finish").val();
-    if (!id){
+    if (id != ""){
     $.post("/routes/get", { id }, response => {
         if (response.err) {
             alert("Error" + JSON.stringify(response.err));
