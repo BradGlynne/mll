@@ -844,6 +844,10 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
+    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName}).exec();
+    if (overrides.length === 0) {
+      console.log("No Overrides Found");
+    }
     const response1 = await fetch('https://esi.evetech.net/latest/route/' + source + '/' + destination + '/?datasource=tranquility&flag=shortest', {
         method: 'get',
     });
