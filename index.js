@@ -458,9 +458,10 @@ app.get("/admin", authAdmin, (req, res) => {
     let systemPromise = System.find({}).exec();
     let routePromise = Routes.find({}).exec();
     let haulerPromise = Haulers.find({}).exec();
+    let serviceOverridePromise = ServiceOverride.find({}).exec();
     let settingsPromise = Settings.findOne({}).exec();
-    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise]).then((data) => {
-        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3] });
+    Promise.all([systemPromise, routePromise, haulerPromise, settingsPromise, serviceOverridePromise]).then((data) => {
+        res.render("admin.ejs", { systems: data[0], routes: data[1], haulers: data[2], settings: data[3], serviceOverride: data[4] });
     });
 });
 

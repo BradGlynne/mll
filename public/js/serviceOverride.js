@@ -99,6 +99,28 @@ function loadOverride() {
 }
 
 
+function toggleOverrideRush(id) {
+    const data = { id };
+
+    $.ajax({
+        type: "POST",
+        url: "/serviceOverride/toggleRush",
+        data: data,
+        cache: false,
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        error: function (response) {
+            console.log("mao");
+            location.reload();
+        },
+    });
+
+}
+
+
 function editOverride() {
     const id = $("#route-edit-select").val();
     const routeType = $(".edit-route-wrapper #route-type").val();
