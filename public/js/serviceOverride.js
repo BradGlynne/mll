@@ -170,9 +170,8 @@ $("body").on("input", "#override-start-system", function () {
             results = ""
             data.forEach((system) => {
                 results += "<div class='result start-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
-                console.log(system.name);
             })
-            $(".override-start-system .search-results").html(results);
+            $(".add-overrides-wrapper .override-start-system .search-results").html(results);
         });
     }
     else {
