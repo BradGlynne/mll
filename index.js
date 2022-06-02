@@ -845,11 +845,14 @@ app.post("/", async (req, res) => {
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
     let rush = req.body.isRush;
-    let rushCriteria ="";
+    let rushCriteria = "";
+    let overrides = "";
     if (rush){
-      rushCriteria = ", isRush: true"
+      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}, isRush: true}).exec();
     }
-    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral} + rushCriteria}).exec();
+    else {
+      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
+    }
     console.log(sourceName);
     console.log(destinationName);
     console.log(volume);
