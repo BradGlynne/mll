@@ -61,7 +61,8 @@ $(document).ready(function () {
 
     $.fn.dataTable.ext.search.push(
   function( settings, searchData, index, rowData, counter ) {
-    console.log(settings.nTable.id);
+    if ( settings.nTable.id == 'jf-routes' ) {
+
     var routes = $('input:checkbox[name="routeType"]:checked').map(function() {
       return this.value;
     }).get();
@@ -75,6 +76,7 @@ $(document).ready(function () {
     }
 
     return false;
+  }
   }
 );
 
