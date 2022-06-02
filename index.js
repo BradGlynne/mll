@@ -853,25 +853,41 @@ app.post("/", async (req, res) => {
     else {
       overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
     }
-    console.log(sourceName);
-    console.log(destinationName);
-    console.log(volume);
-    console.log(collateral);
-    console.log(req.body.isRush);
     if (overrides.length > 0) {
-      console.log("Found at least one matching override")
-      console.log
       let lowestPrice = Infinity;
       let bestServiceType = "";
       jumpCount = 0;
       lowestSec = 0;
-      overrides.forEach(override => {
-          if (override.flatRate < lowestPrice) {
-              lowestPrice = override.flatRate;
-              bestServiceType = override.type;
+      var overrideCharges[];
 
-          }
+
+
+      overrides.forEach(override => {
+        let priceDetails = {
+                type: override.type,
+                flatRate: 0
+        };
+        priceDetails.price = override.flatRate;
+
+        if (req.body.isRush == 'true') {
+            priceDetails.flatRate += override.rushShippingCharge;
+            // if (priceDetails.price < service.minRushPrice) {
+            //     priceDetails.price = service.minRushPrice;
+            // }
+        }
+        overrideCharges.push(priceDetails);
       });
+
+          //save to db
+
+          let lowestPrice = Infinity;
+
+          overrideCharges.forEach(override => {
+              if (override.flatRate < lowestPrice) {
+                  lowestPrice = override.flatRate;
+                  bestServiceType = override.type;
+              }
+          });
 
       const toSave = new Appraisal({
           key: randomstring.generate(8),
