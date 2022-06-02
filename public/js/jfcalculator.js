@@ -14,6 +14,10 @@ function clearStuff() {
     div.style.display='none';
     $("#route-price").html("- ISK");
     $("#max-volume").html("- M<sup>3</sup");
+    $("#route-rush").html("N/A");
+    $("#min-reward").html("- ISK");
+    $("#max-collateral").html("- ISK");
+    $("#route-rush-charge").html("- ISK");
 }
 
 function submit() {
