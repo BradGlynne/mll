@@ -846,6 +846,7 @@ app.post("/", async (req, res) => {
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
     const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$lte: volume}, maxCollateral: {$lte: collateral}, isRush: req.body.isRush}).exec();
     if (overrides.length > 0) {
+      console.log("Found at least one matching override")
       let lowestPrice = Infinity;
 
       overrides.forEach(override => {
