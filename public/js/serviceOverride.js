@@ -171,11 +171,11 @@ $("body").on("input", "#override-start-system", function () {
             data.forEach((system) => {
                 results += "<div class='result start-result' name='" + system.name + "' id='" + system.id + "' >" + system.name + " ( " + system.security + " )</div>";
             })
-            $(".override-start-system .search-results").html(results);
+            $(".services .serviceOverride .add-overrides-wrapper .add-serviceOverride .input-field .override-start-system .search-results").html(results);
         });
     }
     else {
-        $(".override-start-system .search-results").html("");
+        $(".services .serviceOverride .add-overrides-wrapper .add-serviceOverride .input-field .override-start-system .search-results").html("");
     }
 });
 
