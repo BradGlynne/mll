@@ -844,10 +844,33 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
-    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName}).exec();
-    if (overrides.length === 0) {
-      console.log("No Overrides Found");
+    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$lte: volume}, maxCollateral: {$lte: collateral}, isRush: req.body.isRush}).exec();
+    if (overrides.length > 0) {
+      let lowestPrice = Infinity;
+
+      overrides.forEach(override => {
+          if (override.price < lowestPrice) {
+              lowestPrice = override.price;
+              bestServiceType = override.type;
+          }
+      });
+
+      const toSave = new Appraisal({
+          key: randomstring.generate(8),
+          appraisalDate: Date.now(),
+          from: sourceName,
+          to: destinationName,
+          service: bestServiceType,
+          volume,
+          reward: lowestPrice,
+          collateral
+      });
+
+      const saved = await toSave.save();
+
+
     }
+    else {
     const response1 = await fetch('https://esi.evetech.net/latest/route/' + source + '/' + destination + '/?datasource=tranquility&flag=shortest', {
         method: 'get',
     });
@@ -985,7 +1008,7 @@ app.post("/", async (req, res) => {
     });
 
     const saved = await toSave.save();
-
+}
     //SEND RESPONSE
 
     System.find({}, (err, systems) => {
