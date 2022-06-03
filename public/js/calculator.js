@@ -137,7 +137,7 @@ function submit() {
         if (data.lowestSec < 0.0) {
             data.lowestSec = 0.0
         }
-        if (isNan(data.lowestSec){
+        if (isNan(data.lowestSec) {
           $("#lowest-sec").html(" ");
         }
         else {
