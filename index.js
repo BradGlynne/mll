@@ -1035,12 +1035,10 @@ app.post("/", async (req, res) => {
             if (req.body.isRush == 'true') {
                 priceDetails.price += override.rushShippingCharge;
                 }
-            }
 
 
             serviceCharges.push(priceDetails);
-        }
-
+          }
     });
 
 
