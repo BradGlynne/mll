@@ -115,7 +115,7 @@ function submit() {
         $(".parse-status").removeClass("error");
         $(".parse-status").show();
 
-        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, bestServiceType, serviceCharges } = data;
+        const { sourceName, destinationName, jumpCount, price, lowestPrice, collateral, volume, serviceCharges } = data;
         $("#ship-from").html(sourceName);
         $("#ship-to").html(destinationName);
         $("#price").html(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ISK");
@@ -164,7 +164,7 @@ function submit() {
         }
         else {
 
-            bestServiceType = "";
+            let bestServiceType = "";
             let lowestPrice = Infinity;
 
             serviceCharges.forEach(service => {
