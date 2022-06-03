@@ -973,7 +973,7 @@ app.post("/", async (req, res) => {
     let eligibleServicesByRush = [];
 
     services.forEach(service => {
-        if ((parseInt(volume) <= service.maxVolume && parseInt(collateral) <= service.maxCollateral && ((req.body.isRush == 'true' && service.isRush) || req.body.isRush == 'false')) && eligibleServices.includes(service.name)) {
+        if ((parseInt(volume) <= service.maxVolume && parseInt(collateral) <= service.maxCollateral && ((req.body.isRush == 'true' && service.isRush) || req.body.isRush == 'false')) && eligibleServices.includes(service.name) && !jumps.error) {
             eligibleServicesByRush.push(service.name)
         }
         else {
