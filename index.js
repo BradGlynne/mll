@@ -852,74 +852,6 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
-    // let overrides = "";
-    // if (rush){
-    //   overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}, isRush: true}).exec();
-    // }
-    // else {
-    //   overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
-    // }
-    // if (overrides.length > 0) {
-    //   let lowestPrice = Infinity;
-    //   let bestServiceType = "";
-    //   jumpCount = 0;
-    //   lowestSec = 0;
-    //   var serviceCharges = [];
-    //
-    //
-    //
-    //   overrides.forEach(override => {
-    //     let priceDetails = {
-    //             type: override.type,
-    //             flatRate: 0
-    //     };
-    //     priceDetails.flatRate = override.flatRate;
-    //
-    //     if (req.body.isRush == 'true') {
-    //       console.log(priceDetails.flatRate);
-    //         priceDetails.flatRate += override.rushShippingCharge;
-    //         console.log(priceDetails.flatRate);
-    //         // if (priceDetails.price < service.minRushPrice) {
-    //         //     priceDetails.price = service.minRushPrice;
-    //         // }
-    //     }
-    //     serviceCharges.push(priceDetails);
-    //   });
-    //
-    //       //save to db
-    //
-    //       serviceCharges.forEach(override => {
-    //           if (override.flatRate < lowestPrice) {
-    //               lowestPrice = override.flatRate;
-    //               bestServiceType = override.type;
-    //           }
-    //       });
-    //
-    //   const toSave = new Appraisal({
-    //       key: randomstring.generate(8),
-    //       appraisalDate: Date.now(),
-    //       from: sourceName,
-    //       to: destinationName,
-    //       service: bestServiceType,
-    //       volume,
-    //       reward: lowestPrice,
-    //       collateral
-    //   });
-    //
-    //   const saved = await toSave.save();
-    //   //SEND RESPONSE
-    //
-    //   System.find({}, (err, systems) => {
-    //       if (err) {
-    //           res.sendStatus(500);
-    //       }
-    //       else {
-    //           res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
-    //       }
-    //   })
-    //
-    // }
-    // else {
     const response1 = await fetch('https://esi.evetech.net/latest/route/' + source + '/' + destination + '/?datasource=tranquility&flag=shortest', {
         method: 'get',
     });
@@ -1075,7 +1007,6 @@ app.post("/", async (req, res) => {
             res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
         }
     })
-// }
 
 });
 
