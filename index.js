@@ -929,7 +929,7 @@ app.post("/", async (req, res) => {
         res.send({ "err": "No Route Found" });
         return;
     }
-    const jumpCount = jumps.length - 1;
+    const jumpCount = (jumps.length || 1) - 1;
 
     if (!jumps.error) {
     var highsecJumps = 0, lowsecJumps = 0, nullsecJumps = 0;
