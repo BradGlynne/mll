@@ -163,8 +163,7 @@ function submit() {
             return;
         }
         else {
-
-            let bestServiceType = "";
+            bestServiceType = "";
             let lowestPrice = Infinity;
 
             serviceCharges.forEach(service => {
