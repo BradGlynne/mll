@@ -924,7 +924,7 @@ app.post("/", async (req, res) => {
         method: 'get',
     });
     const jumps = await response1.json();
-    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName).exec();
+    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName}).exec();
     if (jumps.error && overrides.length == 0) {
         res.send({ "err": "No Route Found" });
         return;
