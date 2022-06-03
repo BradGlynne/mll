@@ -1011,8 +1011,8 @@ app.post("/", async (req, res) => {
                     priceDetails.price = service.minRushPrice;
                 }
             }
-
-
+              console.log("Pushing Calculated");
+            console.log(priceDetails);
             serviceCharges.push(priceDetails);
         }
 
@@ -1035,8 +1035,8 @@ app.post("/", async (req, res) => {
             if (req.body.isRush == 'true') {
                 priceDetails.price += override.rushShippingCharge;
                 }
-
-
+                console.log("Pushing Override");
+                console.log(priceDetails);
             serviceCharges.push(priceDetails);
           }
     });
