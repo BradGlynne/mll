@@ -852,87 +852,18 @@ app.post("/", async (req, res) => {
     //get number of jumps
     const { source, destination } = req.body;
     const sourceName = await systems.getSystemName(source), destinationName = await systems.getSystemName(destination);
-    let rush = req.body.isRush;
-    let rushCriteria = "";
-    let overrides = "";
-    if (rush){
-      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}, isRush: true}).exec();
-    }
-    else {
-      overrides = await ServiceOverride.find({start: sourceName, end: destinationName, maxVolume: {$gte: volume}, maxCollateral: {$gte: collateral}}).exec();
-    }
-    if (overrides.length > 0) {
-      let lowestPrice = Infinity;
-      let bestServiceType = "";
-      jumpCount = 0;
-      lowestSec = 0;
-      var serviceCharges = [];
-
-
-
-      overrides.forEach(override => {
-        let priceDetails = {
-                type: override.type,
-                flatRate: 0
-        };
-        priceDetails.flatRate = override.flatRate;
-
-        if (req.body.isRush == 'true') {
-          console.log(priceDetails.flatRate);
-            priceDetails.flatRate += override.rushShippingCharge;
-            console.log(priceDetails.flatRate);
-            // if (priceDetails.price < service.minRushPrice) {
-            //     priceDetails.price = service.minRushPrice;
-            // }
-        }
-        serviceCharges.push(priceDetails);
-      });
-
-          //save to db
-
-          serviceCharges.forEach(override => {
-              if (override.flatRate < lowestPrice) {
-                  lowestPrice = override.flatRate;
-                  bestServiceType = override.type;
-              }
-          });
-
-      const toSave = new Appraisal({
-          key: randomstring.generate(8),
-          appraisalDate: Date.now(),
-          from: sourceName,
-          to: destinationName,
-          service: bestServiceType,
-          volume,
-          reward: lowestPrice,
-          collateral
-      });
-
-      const saved = await toSave.save();
-      //SEND RESPONSE
-
-      System.find({}, (err, systems) => {
-          if (err) {
-              res.sendStatus(500);
-          }
-          else {
-              res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
-          }
-      })
-
-    }
-    else {
     const response1 = await fetch('https://esi.evetech.net/latest/route/' + source + '/' + destination + '/?datasource=tranquility&flag=shortest', {
         method: 'get',
     });
     const jumps = await response1.json();
-    if (jumps.error) {
+    const overrides = await ServiceOverride.find({start: sourceName, end: destinationName}).exec();
+    if (jumps.error && overrides.length == 0) {
         res.send({ "err": "No Route Found" });
         return;
     }
-    const jumpCount = jumps.length - 1;
+    const jumpCount = (jumps.length || 1) - 1;
 
-
+    if (!jumps.error) {
     var highsecJumps = 0, lowsecJumps = 0, nullsecJumps = 0;
     var lowestSec = 1.0;
     await jumps.forEach(async jump => {
@@ -950,11 +881,9 @@ app.post("/", async (req, res) => {
             nullsecJumps += 1;
         }
     });
-
+}
 
     var eligibleServices = [];
-    var eligibleServicesByVolume = [];
-    var eligibleServicesByCollateral = [];
 
     var serviceCharges = [];
 
@@ -973,39 +902,24 @@ app.post("/", async (req, res) => {
 
 
     //check eligibility by max volume
-
-    services.forEach(service => {
-        if (parseInt(volume) <= service.maxVolume && eligibleServices.includes(service.name)) {
-            eligibleServicesByVolume.push(service.name);
-        }
-        else {
-            //volume exceeded , pass
-        }
-    })
-
-    //check eligibility by max collateral
-
-    services.forEach(service => {
-        if (parseInt(collateral) <= service.maxCollateral && eligibleServicesByVolume.includes(service.name)) {
-            eligibleServicesByCollateral.push(service.name);
-        }
-        else {
-            //volume exceeded , pass
-        }
-    })
-
-
-    //filter by rush shipping avalaibility
-
     let eligibleServicesByRush = [];
 
     services.forEach(service => {
-        if (eligibleServicesByCollateral.includes(service.name)) {
-            if ((req.body.isRush == 'true' && service.isRush) || req.body.isRush == 'false') {
-                eligibleServicesByRush.push(service.name)
-            }
+        if ((parseInt(volume) <= service.maxVolume && parseInt(collateral) <= service.maxCollateral && ((req.body.isRush == 'true' && service.isRush) || req.body.isRush == 'false')) && eligibleServices.includes(service.name) && !jumps.error) {
+            eligibleServicesByRush.push(service.name)
+        }
+        else {
+            //volume, collateral or rush eligibility not met , pass
         }
     });
+
+    let eligibleOverrideServices = [];
+
+    overrides.forEach(override => {
+      if ((parseInt(volume) <= override.maxVolume && parseInt(collateral) <= override.maxCollateral && ((req.body.isRush == 'true' && override.isRush) || req.body.isRush == 'false'))) {
+          eligibleOverrideServices.push(override.type)
+      }
+    })
 
 
     //get prices for eligible services
@@ -1016,6 +930,7 @@ app.post("/", async (req, res) => {
             //if service is eligible
             let priceDetails = {
                 name: service.name,
+                type: "Calculated",
                 price: 0
             };
 
@@ -1029,11 +944,33 @@ app.post("/", async (req, res) => {
                 }
             }
 
-
             serviceCharges.push(priceDetails);
         }
 
     });
+
+    //add prices into services for eligible overrides_filter
+
+    overrides.forEach(override => {
+
+        if (eligibleOverrideServices.includes(override.type)) {
+            //if service is eligible
+            let priceDetails = {
+                name: override.type,
+                type: "Override",
+                price: 0
+            };
+
+            priceDetails.price = override.flatRate;
+
+            if (req.body.isRush == 'true') {
+                priceDetails.price += override.rushShippingCharge;
+                }
+
+            serviceCharges.push(priceDetails);
+          }
+    });
+
 
     //save to db
 
@@ -1070,7 +1007,6 @@ app.post("/", async (req, res) => {
             res.send({ errorLines, systems, sourceName, destinationName, volume, price, lowestPrice, collateral, jumpCount, bestServiceType, serviceCharges, lowestSec, saved });
         }
     })
-}
 
 });
 
@@ -1291,7 +1227,7 @@ else {
             // is rush shipping
             if (isRush == "true") {
                 if (route.isRush) {
-                    reward += route.rushShippingCharge;
+                    reward = Math.round((reward += route.rushShippingCharge)*100)/100;
                 }
                 else {
                     res.send({ "err": "Rush Shipping Not Available For This Route" });
