@@ -1229,7 +1229,7 @@ else {
                 if (route.isRush) {
                   console.log(reward);
                   console.log(route.rushShippingCharge);
-                    Math.round((reward += route.rushShippingCharge)*100)/100;
+                    reward = Math.round((reward += route.rushShippingCharge)*100)/100;
                     console.log(Math.round(reward*100)/100);
                     console.log(reward);
                 }
