@@ -1227,7 +1227,7 @@ else {
             // is rush shipping
             if (isRush == "true") {
                 if (route.isRush) {
-                    reward += route.rushShippingCharge;
+                    Math.round((reward += route.rushShippingCharge)*100)/100;
                 }
                 else {
                     res.send({ "err": "Rush Shipping Not Available For This Route" });
