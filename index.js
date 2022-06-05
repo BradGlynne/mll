@@ -862,7 +862,7 @@ app.post("/", async (req, res) => {
         return;
     }
     const jumpCount = (jumps.length || 1) - 1;
-
+    let bestServiceType = "";
     if (!jumps.error) {
     var highsecJumps = 0, lowsecJumps = 0, nullsecJumps = 0;
     var lowestSec = 1.0;
