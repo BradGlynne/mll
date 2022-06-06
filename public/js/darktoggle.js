@@ -19,7 +19,7 @@ toggle.addEventListener('change', (event) => {
 })
 
 function themeToggle() {
-  if (document.getElementById("darkToggle")) {
+  if (document.getElementById("darkToggle").checked) {
     alert('checked');
   }
   else {
