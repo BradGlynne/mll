@@ -1,7 +1,11 @@
-const toggle = document.querySelector('.toggle-input');
-const initialState = localStorage.getItem('toggleState') == 'true';
-toggle.checked = initialState;
-
-toggle.addEventListener('change', function() {
-  localStorage.setItem('toggleState', toggle.checked);
-});
+		(function () { 
+			if (localStorage) {
+				var theme = localStorage.getItem('stylemanager.theme');
+				if (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					theme = 'dark';
+				}
+				if (theme === 'dark') {
+					document.body.classList.add('dark');
+				}
+			}
+		})();
