@@ -20,10 +20,10 @@ toggle.addEventListener('change', (event) => {
 
 function themeToggle() {
   if (document.getElementById("darkToggle").checked) {
-    alert('checked');
+    alert('Dark Mode?');
   }
   else {
-    alert('not checked');
+    alert('Light mode?');
   }
 }
 
