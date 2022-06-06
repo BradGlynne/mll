@@ -13,6 +13,7 @@ if (currentTheme == "dark") {
 btn.addEventListener("click", function() {
   // Toggle the .dark-theme class on each click
   document.body.classList.toggle("dark-theme");
+  console.log("Button clicked");
 
   // Let's say the theme is equal to light
   let theme = "light";
