@@ -9,6 +9,10 @@
   filter: invert(1);
 }
 
+.dark-theme .topContainer {
+  filter: invert(1);
+}
+
 .dark-theme img{
   filter: invert(1);
 }
@@ -21,6 +25,6 @@
   filter: invert(1);
 }
 
-.dark-theme .navContainer .mainLogo {
+.dark-theme .mainLogo {
   filter: none;
 }
