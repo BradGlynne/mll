@@ -7,7 +7,6 @@ if (currentTheme == "dark") {
   // ...then use the .dark-theme class
   document.body.classList.add("dark-theme");
   document.getElementById("darkToggle").checked = true;
-  alert('Dark mode enabled');
 }
 });
 function themeToggle() {
