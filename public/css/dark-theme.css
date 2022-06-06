@@ -1,10 +1,9 @@
 .dark-theme {
-  filter: invert(1);
   background-color: #121212;
 }
 
 .dark-theme .topContainer .img,
-.dark-theme .bottomContainer .img,
+.dark-theme .bottomContainer,
 .dark-theme .footer {
   filter: invert(1);
 }
