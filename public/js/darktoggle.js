@@ -1,5 +1,5 @@
 // Select the button
-const toggle = document.getElementById("darkToggle");
+const toggle = document.querySelector(".darkToggle");
 // Select the theme preference from localStorage
 const currentTheme = localStorage.getItem("theme");
 
@@ -10,7 +10,7 @@ if (currentTheme == "dark") {
 }
 
 // Listen for a click on the button
-toggle.addEventListener("change", function() {
+toggle.addEventListener('change', function() {
   // Toggle the .dark-theme class on each click
   document.body.classList.toggle("dark-theme");
   console.log("Button clicked");
