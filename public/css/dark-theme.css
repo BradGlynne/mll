@@ -19,7 +19,7 @@
 }
 
 
-.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table {
+.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table  {
   filter: invert(1);
   color: rgba(0,0,0,.87);
 }
@@ -50,5 +50,17 @@
 
 .dark-theme table .system-input {
   filter: none;
+  color: rgba(0,0,0,.87);
+}
+
+.dark-theme h1 .thumbContainerHeading {
+    filter:none;
+}
+
+.dark-theme .bottomContainer h1 {
+  filter: none;
+} 
+.dark-theme h1 .mainHeading {
+  filter: invert(1);
   color: rgba(0,0,0,.87);
 }
