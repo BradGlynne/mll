@@ -52,3 +52,11 @@
   filter: none;
   color: rgba(0,0,0,.87);
 }
+
+.dark-theme h1 .thumbContainerHeading {
+    filter:none;
+}
+
+.dark-theme h1 {
+  filter: none;
+} 
