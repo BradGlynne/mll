@@ -22,3 +22,9 @@
 .dark-theme label {
   filter: invert(1);
 }
+
+
+.dark-theme .calculator {
+  background-color: #121212;
+  
+}
