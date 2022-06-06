@@ -6,10 +6,6 @@
   filter: invert(1);
 }
 
-.dark-theme .topContainer {
-  filter: invert(1);
-}
-
 .dark-theme img{
   filter: invert(1);
 }
