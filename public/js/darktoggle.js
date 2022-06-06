@@ -1,6 +1,3 @@
-// Select the button
-const toggle = document.getElementById("darkToggle");
-console.log(toggle);
 // Select the theme preference from localStorage
 const currentTheme = localStorage.getItem("theme");
 
@@ -10,39 +7,38 @@ if (currentTheme == "dark") {
   document.body.classList.add("dark-theme");
 }
 
-toggle.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    alert('checked');
-  } else {
-    alert('not checked');
-  }
-})
-
 function themeToggle() {
+  let theme = "light";
   if (document.getElementById("darkToggle").checked) {
-    alert('Dark Mode?');
+    document.body.classList.toggle("dark-theme");
+    theme = "dark";
   }
   else {
-    alert('Light mode?');
+    theme = "light";
+    // if (document.body.classList.contains("dark-theme")) {
+    //       // ...then let's make the theme dark
+    //       theme = "dark";
+    //     } 
   }
+  localStorage.setItem("theme", theme);
 }
 
 
 
 
-// // Listen for a click on the button
-// toggle.addEventListener('change', function() {
-//   // Toggle the .dark-theme class on each click
-//   document.body.classList.toggle("dark-theme");
-//   console.log("Button clicked");
+// Listen for a click on the button
+toggle.addEventListener('change', function() {
+  // Toggle the .dark-theme class on each click
+  document.body.classList.toggle("dark-theme");
+  console.log("Button clicked");
 
-//   // Let's say the theme is equal to light
-//   let theme = "light";
-//   // If the body contains the .dark-theme class...
-//   if (document.body.classList.contains("dark-theme")) {
-//     // ...then let's make the theme dark
-//     theme = "dark";
-//   }
-//   // Then save the choice in localStorage
-//   localStorage.setItem("theme", theme);
-// });
+  // Let's say the theme is equal to light
+  let theme = "light";
+  // If the body contains the .dark-theme class...
+  if (document.body.classList.contains("dark-theme")) {
+    // ...then let's make the theme dark
+    theme = "dark";
+  }
+  // Then save the choice in localStorage
+  localStorage.setItem("theme", theme);
+});
