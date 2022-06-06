@@ -57,3 +57,7 @@
 .dark-theme table .system-input {
   filter: none;
 }
+
+.dark-theme h3.info-text {
+  filter: invert(1);
+}
