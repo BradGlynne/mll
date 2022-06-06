@@ -23,7 +23,6 @@
 
 .dark-theme .navContainer {
   filter: invert(1);
-  position: fixed;
 }
 
 .dark-theme .mainLogo {
