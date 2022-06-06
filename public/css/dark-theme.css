@@ -19,11 +19,16 @@
 }
 
 
-.dark-theme label, .dark-theme h2, .dark-theme img, .dark-theme table {
+.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table {
   filter: invert(1);
 }
 
 
 .dark-theme .calculator, .dark-theme .contract {
   background-color: #121212;
+}
+
+
+.dark-theme select {
+  filter: invert(1);
 }
