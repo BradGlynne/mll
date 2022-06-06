@@ -22,7 +22,7 @@
 }
 
 .dark-theme .navContainer {
-  filter: none;
+  filter: invert(1);
 }
 
 .dark-theme .mainLogo {
