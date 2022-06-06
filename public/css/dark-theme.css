@@ -8,10 +8,6 @@
 .dark-theme .footer {
   filter: invert(1);
 }
-.dark-theme .h3 .img{
-  filter: none !important;
-}
-
 
 .dark-theme img{
   filter: invert(1);
@@ -26,5 +22,5 @@
 }
 
 .dark-theme .navContainer .mainLogo {
-  filter: invert(1);
+  filter: none;
 }
