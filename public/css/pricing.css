@@ -72,6 +72,10 @@ input.form-control.form-control-sm {
   border-width: 1px;
 }
 
+.dataTables_info {
+  padding-top: 5px;
+}
+
 .filters th input{
   width: 70%;
 
