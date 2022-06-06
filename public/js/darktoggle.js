@@ -18,7 +18,7 @@ toggle.addEventListener('change', (event) => {
   }
 })
 
-function toggle() {
+function themeToggle() {
   if (document.getElementById("darkToggle")) {
     alert('checked');
   }
