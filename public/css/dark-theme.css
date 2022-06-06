@@ -9,6 +9,10 @@
   filter: invert(1);
 }
 
+.dark-theme img{
+  filter: invert(1);
+}
+
 .dark-theme video {
   filter: invert(1);
 }
