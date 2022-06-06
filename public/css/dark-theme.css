@@ -19,6 +19,6 @@
 }
 
 
-.dark-theme .label {
+.dark-theme label {
   filter: invert(1);
 }
