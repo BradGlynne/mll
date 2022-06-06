@@ -1449,7 +1449,7 @@ async function removeIncorrectData(){
     let contracts = await Contracts.find({contractID: null}).exec();
     for (contract of contracts) {
         console.log("Found contract with null contract ID, proceeding to delete");
-        await Contract.deleteOne({_id: contract._id});
+        await Contracts.deleteOne({_id: contract._id});
     }
 
 }
