@@ -35,8 +35,13 @@
 
 .dark-theme span.selection {
   filter: invert(1);
+  background-color: #cfcfcf;
 }
 
-.dark-theme textarea{
+.dark-theme textarea, .dark-theme input{
+  background-color: #cfcfcf;
+}
+
+.dark-theme .select2-search--dropdown, .dark-theme .select2-container--default .select2-search--dropdown .select2-search__field, .dark-theme .select2-results, .dark-theme {
   background-color: #cfcfcf;
 }
