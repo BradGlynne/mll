@@ -2,9 +2,7 @@
   background-color: #121212;
 }
 
-.dark-theme .topContainer .img,
-.dark-theme .bottomContainer,
-.dark-theme .footer {
+.dark-theme .bottomContainer{
   filter: invert(1);
 }
 
@@ -17,10 +15,6 @@
 }
 
 .dark-theme video {
-  filter: invert(1);
-}
-
-.dark-theme .navContainer {
   filter: invert(1);
 }
 
