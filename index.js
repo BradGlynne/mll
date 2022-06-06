@@ -1441,6 +1441,17 @@ async function saveContracts() {
         }
     }
     console.log("all saved");
+    removeIncorrectData();
+}
+
+
+async function removeIncorrectData(){
+    let contracts = await Contracts.find({contractID: null}).exec();
+    for (contract of contracts) {
+        console.log("Found contract with null contract ID, proceeding to delete");
+        await Contract.deleteOne({_id: contract._id});
+    }
+
 }
 
 
@@ -1686,6 +1697,7 @@ async function mailContracts() {
             if (!(rewardDelta >= 0.9 && collateralDelta >= 0.9 && volumeDelta >= 0.95 && volumeDelta <= 1.05) && !noCode) {
                 action = "delta error";
             }
+
             if (contract.appraisalService == "Standard Routes" && !(contract.start.includes(contract.appraisalFrom.substring(0, contract.appraisalFrom.indexOf(' '))) && contract.end.includes(contract.appraisalTo.substring(0, contract.appraisalTo.indexOf(' ')))) && !noCode) {
                 action = "route error";
             }
