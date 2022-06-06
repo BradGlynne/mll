@@ -19,7 +19,7 @@
 }
 
 
-.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table {
+.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table, .dark-theme h1 .mainHeading {
   filter: invert(1);
   color: rgba(0,0,0,.87);
 }
