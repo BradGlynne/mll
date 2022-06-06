@@ -19,12 +19,11 @@
 }
 
 
-.dark-theme label, .dark-theme h2, .dark-theme img {
+.dark-theme label, .dark-theme h2, .dark-theme img, .dark-theme table {
   filter: invert(1);
 }
 
 
 .dark-theme .calculator {
   background-color: #121212;
-  filter: invert(1);
 }
