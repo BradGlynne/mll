@@ -1,11 +1,9 @@
-const themeSwitch = document.querySelector('.darkToggle');
-console.log(themeSwitch);
-if(themeSwitch) {
-  console.log("Is True");
-}
-else {
-  console.log ("Is not true");
-}
-themeSwitch.addEventListener('change', () => {
-  document.body.classList.toggle('dark-theme');
+$( ".darkToggle" ).on("click", function() {
+  if( $( "body" ).hasClass( "dark" )) {
+      $( "body" ).removeClass( "dark" );
+      $( ".darkToggle" ).text( "OFF" );
+  } else {
+      $( "body" ).addClass( "dark" );
+      $( ".darkToggle" ).text( "ON" );
+  }
 });
