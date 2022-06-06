@@ -23,7 +23,7 @@
   filter: invert(1);
 }
 
-.dark-theme img .info {
+.dark-theme img.info {
   filter: none;
 }
 
