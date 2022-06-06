@@ -28,7 +28,7 @@
 }
 
 
-.dark-theme .select2-container, .dark-theme h3.info-text, .dark-theme h2, .dark-theme div#per-jump-overrides_info, .dark-theme div#jf-routes_info  {
+.dark-theme .select2-container, .dark-theme h3.info-text, .dark-theme h2, .dark-theme div#per-jump-overrides_info, .dark-theme div#jf-routes_info, .dark-theme .main .calculator h1 {
   filter: invert(1);
 }
 
