@@ -78,7 +78,10 @@ input.form-control.form-control-sm {
 
 .filters th input{
   width: 70%;
-
+  border-radius: 5px;
+  padding-left: 1px;
+  border-width: 1px;
+  border-style: solid;
 }
 
 main {
