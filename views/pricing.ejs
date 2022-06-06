@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/pricing.css">
     <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="stylesheet" href="css/dark-theme.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/darktoggle.js"></script>
     <script src="/js/contracts.js" async></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
@@ -21,6 +23,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js" type="text/javascript"></script>
     <script src="/js/pricing.js" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1ee9481ced.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -41,6 +45,19 @@
                   <li class='navLink'><a
                           href='https://www.pandemic-horde.org/forum/index.php?threads/multi-lemm-logistics-jf-freighter-br-service-covering-tke-def-custom-routes.2872/'
                           target="_blank">FORUMS</a></li>
+                  <li class='navLink'>
+                      <div class="pretty p-icon p-toggle p-plain">
+                        <input type="checkbox" id="darkToggle" onclick="themeToggle()" />
+                        <div class="state p-off">
+                          <i class="icon fa-solid fa-lightbulb"></i>
+                          <label>&lrm;</label>
+                        </div>
+                        <div class="state p-on">
+                          <i class="icon fa-regular fa-lightbulb"></i>
+                          <label>&lrm;</label>
+                        </div>
+                      </div>
+                    </li>
               </ul>
           </div>
       </div>

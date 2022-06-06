@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/toast.css">
-
+    <link rel="stylesheet" href="css/dark-theme.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/darktoggle.js"></script>
 
 </head>
 
@@ -32,6 +33,18 @@
                     <li class='navLink'><a
                             href='https://www.pandemic-horde.org/forum/index.php?threads/multi-lemm-logistics-jf-freighter-br-service-covering-tke-def-custom-routes.2872/'
                             target="_blank">FORUMS</a></li>
+                    <li class='navLink'>
+                        <div class="pretty p-icon p-toggle p-plain">
+                        <input type="checkbox" id="darkToggle" onclick="themeToggle()" />
+                        <div class="state p-off">
+                          <i class="icon fa-solid fa-lightbulb"></i>
+                          <label>&lrm;</label>
+                        </div>
+                        <div class="state p-on">
+                          <i class="icon fa-regular fa-lightbulb"></i>
+                          <label>&lrm;</label>
+                        </div>
+                      </div>
                 </ul>
             </div>
         </div>
