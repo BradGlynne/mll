@@ -17,3 +17,8 @@
 .dark-theme .mainLogo {
   filter: none;
 }
+
+
+.dark-theme .label {
+  filter: invert(1);
+}
