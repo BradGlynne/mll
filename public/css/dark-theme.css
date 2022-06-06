@@ -47,6 +47,6 @@
   margin-right: 1px;
 }
 
-.dark-theme table .system-input {
+.dark-theme table .system-input, .dark-theme h1.mainHeading {
   filter: none;
 }
