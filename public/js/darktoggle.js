@@ -1,5 +1,5 @@
 // Select the button
-const toggle = document.querySelector(".darkToggle");
+const toggle = document.getElementById('darkToggle');
 console.log(toggle);
 // Select the theme preference from localStorage
 const currentTheme = localStorage.getItem("theme");
