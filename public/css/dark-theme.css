@@ -15,6 +15,6 @@
   filter: invert(1);
 }
 
-.dark-theme .navContainer img {
+.dark-theme .navContainer .img.mainLogo {
   filter: invert(1);
 }
