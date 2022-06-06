@@ -2,3 +2,7 @@
   filter: invert(1);
   background-color: #121212;
 }
+
+.dark-theme img {
+  filter: invert(1);
+}
