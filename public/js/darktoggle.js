@@ -1,5 +1,3 @@
-$(document).ready(function () {
-
 // Select the button
 const btn = document.querySelector(".darkToggle");
 // Select the theme preference from localStorage
@@ -27,4 +25,9 @@ btn.addEventListener("click", function() {
   // Then save the choice in localStorage
   localStorage.setItem("theme", theme);
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  document.documentElement.setAttribute("data-theme", "dark");
 });
