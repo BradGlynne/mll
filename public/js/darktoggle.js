@@ -18,6 +18,15 @@ toggle.addEventListener('change', (event) => {
   }
 })
 
+function toggle() {
+  if (document.getElementById("darkToggle")) {
+    alert('checked');
+  }
+  else {
+    alert('not checked');
+  }
+}
+
 
 
 
