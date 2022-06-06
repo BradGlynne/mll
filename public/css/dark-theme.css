@@ -21,6 +21,7 @@
 
 .dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table {
   filter: invert(1);
+  color: rgba(0,0,0,.87);
 }
 
 .dark-theme .calculator, .dark-theme .contract {
@@ -47,6 +48,11 @@
   margin-right: 1px;
 }
 
-.dark-theme table .system-input, .dark-theme h1 {
+.dark-theme table .system-input {
+  filter: none;
+  color: rgba(0,0,0,.87);
+}
+
+.dark-theme h1 {
   filter: none;
 }
