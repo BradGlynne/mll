@@ -244,6 +244,8 @@ nav ul li a:hover {
     padding: 5px;
     width: 100%;
     border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 #clear {
