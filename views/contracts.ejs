@@ -549,7 +549,7 @@
                     <%if(noCode && (contract.secondaryValidationReward) < 0){%>
                       <td>No Route Found</td>
                       <%}
-                    if(noCode && (contract.secondaryValidationReward) >= 0){%>
+                    if(noCode && (contract.secondaryValidationReward || 0) >= 0){%>
                         <td>Validation Attempted</td>
                       <%}
                       if(!noCode){%>
