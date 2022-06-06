@@ -29,6 +29,14 @@
 }
 
 
-.dark-theme select {
+.dark-theme .select2-container {
   filter: invert(1);
+}
+
+.dark-theme span.selection {
+  filter: invert(1);
+}
+
+.dark-theme textarea{
+  background-color: #cfcfcf;
 }
