@@ -1,4 +1,5 @@
 // Select the theme preference from localStorage
+$(document).ready(function () {
 const currentTheme = localStorage.getItem("theme");
 
 // If the current theme in localStorage is "dark"...
@@ -7,7 +8,7 @@ if (currentTheme == "dark") {
   document.body.classList.add("dark-theme");
   document.getElementById("darkToggle").checked = true;
 }
-
+});
 function themeToggle() {
   let theme = "light";
   if (document.getElementById("darkToggle").checked) {
