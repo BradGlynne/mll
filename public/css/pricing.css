@@ -71,6 +71,8 @@ input.form-control.form-control-sm {
   border-style: solid;
   border-width: 1px;
   padding-left: 2px;
+  font-size: medium;
+  outline-offset: 0px;
 }
 
 .dataTables_info {
