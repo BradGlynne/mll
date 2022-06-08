@@ -4,14 +4,25 @@ $(function () {
     // Initially disable language switching button.
     $('#switch-lang').css({'pointer-events':'none',
      'cursor':'default'}).attr('disabled','disabled');
-  
+    
+    function hideAllLanguages () {
+        $('[lang="zh"]').hide;
+        $('[lang="en"]').hide
+    }
+
+
     function langButtonListen() {
       $('.switch-lang').click(function (event) {
         event.preventDefault();
+        var language = $(this).attr("id");
         console.log($(this).attr("id"));
-        $('[lang="zh"]').toggle();
-        $('[lang="en"]').toggle();
+        hideAllLanguages();
+        $('[lang="'+ language +'"]').toggle()
+        // $('[lang="zh"]').toggle();
+        // $('[lang="en"]').toggle();
         // Switch cookie stored language.
+        localStorage.setItem("language", language);
+
         if ($.cookie('lang') === 'en') {
           $.cookie('lang', 'zh', { expires: 7 });
         } else {
