@@ -7,7 +7,8 @@ $(function () {
     
     function hideAllLanguages () {
         $('[lang="zh"]').hide;
-        $('[lang="en"]').hide
+        $('[lang="en"]').hide;
+        console.log("Hiding language spans");
     }
 
 
