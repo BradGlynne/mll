@@ -75,7 +75,7 @@ $(function () {
         // geolocation IS NOT available
         $('[lang="zh"]').hide();
         $.cookie('lang', 'en', { expires: 7 });
-        langButtonListen());
+        langButtonListen();
       }
     }
   });
