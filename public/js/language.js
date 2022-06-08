@@ -40,7 +40,7 @@ $(function () {
           // accepted geolocation so figure out which country
           var lat = position.coords.latitude,
               lng = position.coords.longitude;
-          $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true', null, function (response) {
+          $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true', null, function (response) {
             var country = response.results[response.results.length-1].formatted_address;
             if (country ===  'Taiwan' || country === 'China') {
               $('[lang="en"]').hide();
