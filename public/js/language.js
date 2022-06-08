@@ -35,6 +35,9 @@ $(function () {
     } else {
       // no cookie set, so detect language based on location.
       if ("geolocation" in navigator) {
+        $('[lang="zh"]').hide();
+        $.cookie('lang', 'en', { expires: 7 });
+        langButtonListen();
         // geolocation is available
         navigator.geolocation.getCurrentPosition(function (position) {
           // accepted geolocation so figure out which country
