@@ -6,7 +6,7 @@ $(function () {
      'cursor':'default'}).attr('disabled','disabled');
   
     function langButtonListen() {
-      $('#switch-lang').click(function (event) {
+      $('.switch-lang').click(function (event) {
         event.preventDefault();
         $('[lang="zh"]').toggle();
         $('[lang="en"]').toggle();
