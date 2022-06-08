@@ -2,8 +2,8 @@ $(function () {
     ///// Language Switching (2 languages: English and Chinese). /////
     const currentLanguage = localStorage.getItem("language");
     // Initially disable language switching button.
-    $('#switch-lang').css({'pointer-events':'none',
-     'cursor':'default'}).attr('disabled','disabled');
+    // $('#switch-lang').css({'pointer-events':'none',
+    //  'cursor':'default'}).attr('disabled','disabled');
     
     function hideAllLanguages () {
         $('[lang="zh"]').hide();
@@ -31,6 +31,10 @@ $(function () {
         localStorage.setItem("language", "en");
         hideAllLanguages ();
         $('[lang="en"]').toggle()
+    }
+    else {
+        hideAllLanguages();
+        $('[lang="'+ currentLanguage +'"]').toggle()
     }
 
     // Check if language cookie already exists.
