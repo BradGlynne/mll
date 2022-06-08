@@ -30,11 +30,13 @@ $(function () {
     if (!currentLanguage) {
         localStorage.setItem("language", "en");
         hideAllLanguages ();
-        $('[lang="en"]').toggle()
+        $('[lang="en"]').toggle();
+        langButtonListen()
     }
     else {
         hideAllLanguages();
         $('[lang="'+ currentLanguage +'"]').toggle()
+        langButtonListen()
     }
 
     // Check if language cookie already exists.
