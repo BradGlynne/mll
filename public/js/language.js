@@ -8,6 +8,7 @@ $(function () {
     function langButtonListen() {
       $('.switch-lang').click(function (event) {
         event.preventDefault();
+        console.log($(this).attr("id"));
         $('[lang="zh"]').toggle();
         $('[lang="en"]').toggle();
         // Switch cookie stored language.
