@@ -8,7 +8,6 @@ $(function () {
     function hideAllLanguages () {
         $('[lang="zh"]').hide();
         $('[lang="en"]').hide();
-        console.log("Hiding language spans");
     }
 
 
@@ -16,7 +15,6 @@ $(function () {
       $('.switch-lang').click(function (event) {
         event.preventDefault();
         var language = $(this).attr("id");
-        console.log($(this).attr("id"));
         hideAllLanguages();
         $('[lang="'+ language +'"]').toggle()
         // $('[lang="zh"]').toggle();
