@@ -6,8 +6,8 @@ $(function () {
      'cursor':'default'}).attr('disabled','disabled');
     
     function hideAllLanguages () {
-        $('[lang="zh"]').hide;
-        $('[lang="en"]').hide;
+        $('[lang="zh"]').hide();
+        $('[lang="en"]').hide();
         console.log("Hiding language spans");
     }
 
