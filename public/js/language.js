@@ -7,6 +7,7 @@ $(function () {
     
     function hideAllLanguages () {
         $('[lang="zh"]').hide();
+        $('[lang="ko"]').hide();
         $('[lang="en"]').hide();
     }
 
