@@ -9,6 +9,9 @@ $(function () {
         $('[lang="zh"]').hide();
         $('[lang="ko"]').hide();
         $('[lang="en"]').hide();
+        $('[lang="jp"]').hide();
+        $('[lang="de"]').hide();
+        $('[lang="da"]').hide();
     }
 
 
