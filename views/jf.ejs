@@ -79,13 +79,13 @@
         </div>
         <div class="statictics">
             <h5 style="font-weight: 300; margin:  5px 0;"><span lang="en">Contracts in queue : </span><span lang="zh">队列中的合同 : </span><span class="outstanding">-</span></h5>
-            <h5 style="font-weight: 300; margin:  5px 0;"><span lang="en">Average Completion Time : </span><span class="completion">-</span>
+            <h5 style="font-weight: 300; margin:  5px 0;"><span lang="en">Average Completion Time : </span><span lang="zh">平均完成时间： </span><span class="completion">-</span><span lang="en"> hours</span><span lang="zh"> 小时</span>
             </h5>
-            <h6 style="margin-top: 10px; font-size: 0.7rem;"><span lang="en">(Based on averages of the last 50 contracts)</span></h6>
+            <h6 style="margin-top: 10px; font-size: 0.7rem;"><span lang="en">(Based on averages of the last 50 contracts)</span><span lang="zh">（基于最近50个合同的平均值）</span></h6>
         </div>
         <div class="calculator">
-            <h1><span lang="en">JF Calculator</span></h1>
-            <label><span lang="en">Start:</span>
+            <h1><span lang="en">JF Calculator</span><span lang="zh">跳货计算器</span></h1>
+            <label><span lang="en">Start:</span><span lang="zh">起点</span>
                 <select style="width:450px" class="select2-search" name="route" id="start">
                   <optgroup label="Standard">
                     <% routesAdded = [] %>
@@ -110,7 +110,7 @@
                 </select>
             </label>
             <div id="destination" style="display: none">
-            <label><span lang="en">Destination:</span>
+            <label><span lang="en">Destination:</span><span lang="zh">目的地</span>
                 <select style="width:450px" class="select2-search" name="route" id="finish">
                     <option hidden disabled selected value> -- </option>
                 </select>
@@ -129,40 +129,52 @@
 
             </label>
             </span>
+            <span lang="zh"><label style="display: block; margin-top: 25px;" class="checkbox">
+                加急运输：
+                <input type="checkbox" id="rush">
+                <img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                    title="加急运输会确保在24小时内完成，否则全额退款"> </input>
+            </label>
+            </span>
 
 
 
             <div class="route-limits" style="flex-wrap: wrap;">
                 <div class="route-limits" style="width: 100%;border: none; margin-bottom: 25px;">
-                    <label><span lang="en">Route Pricing : </span><span id="route-price">-
+                    <label><span lang="en">Route Pricing : </span><span lang="zh">路线价格</span><span id="route-price">-
                             ISK</span></label>
-                    <label><span lang="en">Minimum Reward : </span><span id="min-reward">- ISK</span></label>
+                    <label><span lang="en">Minimum Reward : </span><span lang="zh">最低奖励</span><span id="min-reward">- ISK</span></label>
                 </div>
-                <label><span lang="en">Maximum Volume : </span><span id="max-volume">- m<sup>3</sup></span></label>
-                <label><span lang="en">Maximum Collateral : </span><span id="max-collateral">- ISK</span></label>
+                <label><span lang="en">Maximum Volume : </span><span lang="zh">最高体积</span><span id="max-volume">- m<sup>3</sup></span></label>
+                <label><span lang="en">Maximum Collateral : </span><span lang="zh">最高保证金</span><span id="max-collateral">- ISK</span></label>
                 <div class="route-limits" style="width: 100%;border: none; margin-bottom: 25px;">
-                    <label><span lang="en">Rush Shipping: </span><span id="route-rush">N/A</span></label>
+                    <label><span lang="en">Rush Shipping: </span><span lang="zh">加急运输</span><span id="route-rush">N/A</span></label>
 
-                    <label><span lang="en">Rush Shipping Charge : </span><span id="route-rush-charge">- ISK</span></label>
+                    <label><span lang="en">Rush Shipping Charge : </span><span lang="zh">加急运输附加费</span><span id="route-rush-charge">- ISK</span></label>
                 </div>
-                <h3 style="margin-top: 25px;"><span lang="en">No assembled containers/ships!</span></h3>
+                <h3 style="margin-top: 25px;"><span lang="en">No assembled containers/ships!</span><span lang="zh">不能有组装好的箱子或者成船！</span></h3>
             </div>
             <span lang="en">
             <label class="item-list">
                 Item List:
                 <textarea placeholder="Item List" name="itemList" id="item-list"></textarea>
             </label></span>
+            <span lang="zh">
+                <label class="item-list">
+                    物品列表:
+                    <textarea placeholder="物品列表" name="itemList" id="item-list"></textarea>
+                </label></span>
             <div class="additional-wrapper">
                 <label class="additional">
-                    <span lang="en">Additional Volume</span>
+                    <span lang="en">Additional Volume</span><span lang="zh">额外体积</span>
                     <input type="text" placeholder="Additional Volume" id="additional-volume" value="0">
                 </label>
                 <label class="additional">
-                    <span lang="en">Additional Collateral</span>
+                    <span lang="en">Additional Collateral</span><span lang="zh">额外保证金</span>
                     <input type="text" placeholder="Additional Collateral" id="additional-collateral" value="0">
                 </label>
-                <button onclick="clearStuff()"><span lang="en">Clear</span></button>
-                <button onclick="submit()"><span lang="en">Submit</span></button>
+                <button onclick="clearStuff()"><span lang="en">Clear</span><span lang="zh">清除</span></button>
+                <button onclick="submit()"><span lang="en">Submit</span><span lang="zh">提交</span></button>
             </div>
         </div>
 
@@ -179,30 +191,30 @@
 
             <table>
                 <tr>
-                    <th colspan="2" style="border-right: none;"><span lang="en">Contract Description</span></th>
+                    <th colspan="2" style="border-right: none;"><span lang="en">Contract Description</span><span lang="zh">合同描述</span></th>
                 </tr>
                 <tr>
                     <td colspan="2" style="border-right: none;" id="description">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Ship From</span></th>
-                    <th><span lang="en">Ship To</span></th>
+                    <th><span lang="en">Ship From</span><span lang="zh">运输起点</span></th>
+                    <th><span lang="en">Ship To</span><span lang="zh">运输目的地</span></th>
                 </tr>
                 <tr>
                     <td id="ship-from">-</td>
                     <td id="ship-to">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Contract To</span></th>
-                    <th><span lang="en">Rush Shipping</span></th>
+                    <th><span lang="en">Contract To</span><span lang="zh">合同挂给</span></th>
+                    <th><span lang="en">Rush Shipping</span><span lang="zh">加急运输</span></th>
                 </tr>
                 <tr>
                     <td>Multi-Lemm Logistics</td>
                     <td id="rush-status">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Total Volume</span></th>
-                    <th><span lang="en">Jita Sell Price</span></th>
+                    <th><span lang="en">Total Volume</span><span lang="zh">总体积</span></th>
+                    <th><span lang="en">Jita Sell Price</span><span lang="zh">吉他卖单价</span></th>
                 </tr>
                 <tr>
                     <td id="volume">-</td>
@@ -210,16 +222,16 @@
                 </tr>
 
                 <tr>
-                    <th><span lang="en">Contract Reward</span></th>
-                    <th><span lang="en">Contract Collateral</span></th>
+                    <th><span lang="en">Contract Reward</span><span lang="zh">合同奖励</span></th>
+                    <th><span lang="en">Contract Collateral</span><span lang="zh">合同保证金</span></th>
                 </tr>
                 <tr>
                     <td id="reward">-</td>
                     <td id="collateral">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Expiration</span></th>
-                    <th><span lang="en">Days To Complete</span></th>
+                    <th><span lang="en">Expiration</span><span lang="zh">过期</span></th>
+                    <th><span lang="en">Days To Complete</span><span lang="zh">完成期限</span></th>
                 </tr>
                 <tr>
                     <td id="expiration">7 days</td>
