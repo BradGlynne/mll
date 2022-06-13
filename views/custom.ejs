@@ -73,30 +73,30 @@
             <img src="img/loading.gif">
         </div>
         <div class="statictics">
-            <h5 style="font-weight: 300; margin:  5px 0;">Contracts in queue : <span class="outstanding">-</span></h5>
-            <h5 style="font-weight: 300; margin:  5px 0;">Average Completion Time : <span class="completion">-</span>
+            <h5 style="font-weight: 300; margin:  5px 0;"><span lang="en">Contracts in queue : </span><span lang="zh">队列中的合同 : </span><span lang="jp">順番待ち : </span><span class="outstanding">-</span></h5>
+            <h5 style="font-weight: 300; margin:  5px 0;"><span lang="en">Average Completion Time : </span><span lang="zh">平均完成时间： </span><span class="completion">-</span><span lang="en"> hours</span><span lang="zh"> 小时</span>
             </h5>
-            <h6 style="margin-top: 10px; font-size: 0.7rem;">(Based on averages of the last 50 contracts)</h6>
-
+            <h6 style="margin-top: 10px; font-size: 0.7rem;"><span lang="en">(Based on averages of the last 50 contracts)</span><span lang="zh">（基于最近50个合同的平均值）</span></h6>
         </div>
         <div class="calculator">
-            <h1>Custom Request Form</h1>
+            <h1><span lang="en">Custom Request Form</span><span lang="zh">定制服务表格</span></h1>
             <table>
               <tr>
-                <td><label class="system-input">Eve Character Name:</label></td>
+                <td><label class="system-input"><span lang="en">Eve Character Name:</span><span lang="zh">EVE角色名:</span></label></td>
                     <td><label class="system-input"><div class="input-field">
                         <input type="text" id="eveCharacterName" spellcheck="false">
                     </div></label></td>
-                <td><label class="system-input">Discord ID:</label>
-                  <img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
-                      title="Please put your full discord name + ID here. e.g. Brad#2222"></td>
+                <td><label class="system-input"><span lang="en">Discord ID:</span><span lang="zh">Discord ID：</span></label>
+                    <span lang="en"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                      title="Please put your full discord name + ID here. e.g. Brad#2222"></span><span lang="zh"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                        title="请输入您的完整Discord昵称+数字ID，例如Brad#2222"></span></td>
                     <td><label class="system-input"><div class="input-field">
                         <input type="text" id="discordId" spellcheck="false">
                     </div></label></td>
 
             </tr>
             <tr>
-              <td><label class="system-input">Start:</label></td>
+              <td><label class="system-input"><span lang="en">Start:</span><span lang="zh">起点</span><span lang="jp">出発地</span></label></td>
                 <td>
                   <label class="system-input start"><div class="input-field">
                     <input type="text" id="start" spellcheck="false">
@@ -105,7 +105,7 @@
                 </div>
             </label>
         </td>
-            <td><label class="system-input">Destination:</label></td>
+            <td><label class="system-input"><span lang="en">Destination:</span><span lang="zh">目的地</span><span lang="jp">目的地</span></label></td>
               <td><label class="system-input finish">
                 <div class="input-field">
                     <input type="text" id="finish" spellcheck="false">
@@ -116,11 +116,12 @@
           </label></td>
         </tr>
         <tr>
-          <td><label class="system-input">Start & Destination both NPC/PH Structures?</label>
+          <td><label class="system-input"><span lang="en">Start & Destination both NPC/PH Structures?</span><span lang="zh">起点和目的地均为NPC或者PH建筑？</span></label>
             </td>
-            <td><input type="checkbox" id="structureType" style="margin-left: 10px"> <img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
-              title="If it's a citadel PH do not own, chances are we do not have docking rights"></td>
-        <td><label class="system-input">Rush Shipping required: </label></td>
+            <td><input type="checkbox" id="structureType" style="margin-left: 10px">
+                <span lang="en"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+              title="If it's a citadel PH do not own, chances are we do not have docking rights"></span></td>
+        <td><label class="system-input"><span lang="en">Rush Shipping required: </span><span lang="zh">加急服务需要：</span></label></td>
             <td><label class="system-input"><div class="input-field">
                 <input type="checkbox" id="rushCheckbox">
                 <input type="datetime-local" id="targetRushDate" style="display:none" name="targetRushDate">
@@ -132,24 +133,24 @@
 
         </table>
             <div class="route-limits" style="flex-wrap: wrap;">
-              <h3 class="info-text" style="color: black;margin-top: 0px">Submitting this form notifies our pilots of your custom request, please ensure details are correct before submitting.</h3>
-              <h3>No assembled containers/ships!</h3>
+              <h3 class="info-text" style="color: black;margin-top: 0px"><span lang="en">Submitting this form notifies our pilots of your custom request, please ensure details are correct before submitting.</span><span lang="zh">提交次表格会将您的定制需求通知我们的飞行员，请确保信息正确后再提交。</span></h3>
+              <h3><span lang="en">No assembled containers/ships!</span><span lang="zh">不能有组装好的箱子或者成船！</span></h3>
             </div>
             <label class="item-list">
-                Item List:
+                <span lang="en">Item List:</span><span lang="zh">物品列表:</span>
                 <textarea placeholder="Item List" name="itemList" id="item-list"></textarea>
             </label>
             <div class="additional-wrapper">
                 <label class="additional">
-                    Additional Volume
+                    <span lang="en">Additional Volume</span><span lang="zh">额外体积</span>
                     <input type="text" placeholder="Additional Volume" id="additional-volume" value="0">
                 </label>
                 <label class="additional">
-                    Additional Collateral
+                    <span lang="en">Additional Collateral</span><span lang="zh">额外保证金</span>
                     <input type="text" placeholder="Additional Collateral" id="additional-collateral" value="0">
                 </label>
-                <button onclick="clearStuff()" id="clear">Clear</button>
-                <button id="submit" onclick="submit()">Submit</button>
+                <button onclick="clearStuff()" id="clear"><span lang="en">Clear</span><span lang="zh">清除</span></button>
+                <button id="submit" onclick="submit()"><span lang="en">Submit</span><span lang="zh">提交</span></button>
             </div>
         </div>
 
@@ -159,24 +160,24 @@
             <mark class="parse-status success">Parsed successfully</mark>
             <table>
                 <tr>
-                    <th>Ship From</th>
-                    <th>Ship To</th>
+                    <th><span lang="en">Ship From</span><span lang="zh">运输起点</span></th>
+                    <th><span lang="en">Ship To</span><span lang="zh">运输目的地</span></th>
                 </tr>
                 <tr>
                     <td id="ship-from">-</td>
                     <td id="ship-to">-</td>
                 </tr>
                 <tr>
-                    <th>Rush Target Date</th>
-                    <th>Total Volume</th>
+                    <th><span lang="en">Rush Target Date</span><span lang="zh">加急目标日期</span></th>
+                    <th><span lang="en">Total Volume</span><span lang="zh">总体积</span></th>
                 </tr>
                 <tr>
                     <td id="rush-status">-</td>
                     <td id="volume">-</td>
                 </tr>
                 <tr>
-                    <th>Jita Sell Price</th>
-                    <th>Contract Collateral</th>
+                    <th><span lang="en">Jita Sell Price</span><span lang="zh">吉他卖单价</span></th>
+                    <th><span lang="en">Contract Collateral</span><span lang="zh">合同保证金</span></th>
                 </tr>
                 <tr>
                     <td id="price">-</td>
