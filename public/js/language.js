@@ -1,5 +1,5 @@
 $(function () {
-    ///// Language Switching (2 languages: English and Chinese). /////
+    ///// Language Switching. /////
     const currentLanguage = localStorage.getItem("language");
     // Initially disable language switching button.
     // $('#switch-lang').css({'pointer-events':'none',
