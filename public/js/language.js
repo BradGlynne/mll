@@ -36,9 +36,14 @@ $(function () {
         langButtonListen()
     }
     else {
+        if (currentLanguage == 'en' || currentLanguage == 'zh' ) {
         hideAllLanguages();
         $('[lang="'+ currentLanguage +'"]').toggle()
         langButtonListen()
+        }
+        else {
+          alert('Not Implemented');
+        }
     }
 
     // Check if language cookie already exists.
