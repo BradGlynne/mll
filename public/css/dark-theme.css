@@ -1,0 +1,66 @@
+.dark-theme {
+  background-color: #1f1f1f;
+}
+
+.dark-theme .bottomContainer{
+  filter: invert(1);
+}
+
+.dark-theme img{
+  filter: invert(1);
+}
+
+.dark-theme video {
+  filter: invert(1);
+}
+
+.dark-theme .mainLogo, .dark-theme img.info {
+  filter: none;
+}
+
+
+.dark-theme label, .dark-theme h1, .dark-theme img, .dark-theme table  {
+  filter: invert(1);
+  color: rgba(0,0,0,.87);
+}
+
+.dark-theme .calculator, .dark-theme .contract {
+  background-color: #1f1f1f;
+}
+
+
+.dark-theme .select2-container, .dark-theme h3.info-text, .dark-theme h2, .dark-theme div#per-jump-overrides_info, .dark-theme div#jf-routes_info, .dark-theme .main .calculator h1 {
+  filter: invert(1);
+}
+
+.dark-theme span.selection {
+  filter: invert(1);
+  background-color: #cfcfcf;
+}
+
+.dark-theme textarea, .dark-theme input, .dark-theme .select2-search--dropdown, .dark-theme .select2-container--default .select2-search--dropdown .select2-search__field, .dark-theme .select2-results, .dark-theme .select2-container--default .select2-selection--single{
+  background-color: #cfcfcf;
+}
+
+.dark-theme .calculator .additional-wrapper button {
+  border: none;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.dark-theme table .system-input {
+  filter: none;
+  color: rgba(0,0,0,.87);
+}
+
+.dark-theme h1 .thumbContainerHeading {
+    filter:none;
+}
+
+.dark-theme .bottomContainer h1 {
+  filter: none;
+} 
+.dark-theme h1 .mainHeading {
+  filter: invert(1);
+  color: rgba(0,0,0,.87);
+}

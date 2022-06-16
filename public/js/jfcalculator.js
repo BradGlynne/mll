@@ -32,8 +32,8 @@ function submit() {
     }
     const isRush = $("#rush").is(":checked");
     const itemList = $("#item-list").val();
-    const additionalVolume = parseInt($("#additional-volume").val());
-    const additionalCollateral = parseInt($("#additional-collateral").val());
+    const additionalVolume = parseFloat($("#additional-volume").val());
+    const additionalCollateral = parseFloat($("#additional-collateral").val());
 
     isLoading(true);
 
