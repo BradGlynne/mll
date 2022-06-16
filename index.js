@@ -1530,13 +1530,13 @@ async function processContracts(user) {
             contract.start_location_id = await getLocationName(contract.start_location_id, user);
         }
         catch (err) {
-            contract.start_location_id = "-";
+            contract.start_location_id = "Unknown Structure";
         }
         try {
             contract.end_location_id = await getLocationName(contract.end_location_id, user);
         }
         catch (err) {
-            contract.end_location_id = "-";
+            contract.end_location_id = "Unknown Structure";
         }
         contract.title = contract.title.toString().trim();
         contract.service = contract.title.split("-")[0];
