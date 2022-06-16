@@ -19,12 +19,17 @@ $(function () {
       $('.switch-lang').click(function (event) {
         event.preventDefault();
         var language = $(this).attr("id");
+        if (language == "en" || language =="zh") {
         hideAllLanguages();
         $('[lang="'+ language +'"]').toggle()
         // $('[lang="zh"]').toggle();
         // $('[lang="en"]').toggle();
         // Switch cookie stored language.
         localStorage.setItem("language", language);
+        }
+        else {
+          alert('Not Implemented');
+        }
       });
     }
   
@@ -36,14 +41,9 @@ $(function () {
         langButtonListen()
     }
     else {
-        if (currentLanguage == 'en' || currentLanguage == 'zh' ) {
         hideAllLanguages();
         $('[lang="'+ currentLanguage +'"]').toggle()
         langButtonListen()
-        }
-        else {
-          alert('Not Implemented');
-        }
     }
 
     // Check if language cookie already exists.
