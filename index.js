@@ -1538,16 +1538,16 @@ async function processContracts(user) {
             contract.acceptor_name = "-";
         }
         try {
-            contract.start_location_id = await getLocationName(contract.start_location_id, user);
+            contract.start_location_id = await getLocationName(contract.start_location_id, user)||"Unknown Structure";
         }
         catch (err) {
-            contract.start_location_id = "Unknown Structure";
+            contract.start_location_id = "-";
         }
         try {
-            contract.end_location_id = await getLocationName(contract.end_location_id, user);
+            contract.end_location_id = await getLocationName(contract.end_location_id, user)||"Unknown Structure";
         }
         catch (err) {
-            contract.end_location_id = "Unknown Structure";
+            contract.end_location_id = "-";
         }
         contract.title = contract.title.toString().trim();
         contract.service = contract.title.split("-")[0];
