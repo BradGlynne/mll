@@ -48,7 +48,7 @@ function submit() {
             resetOutputFields();
             return;
         }
-        else if (response.price == 0 && response.volume == 0) {
+        else if (response.price == 0 && response.volume == 0 && response.collateral == 0) {
             $(".parse-status").addClass("error");
             $(".parse-status").html("ERROR : No Items appraised");
             $(".parse-status").show();
