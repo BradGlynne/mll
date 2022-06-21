@@ -69,7 +69,6 @@ function submit() {
             return;
         }
         else {
-            console.log(response.collateral);
             $(".parse-status").html("SUCCESSFUL");
             $(".parse-status").removeClass("error");
             $(".parse-status").show();
