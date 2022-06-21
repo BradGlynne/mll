@@ -90,7 +90,7 @@ function submit() {
             resetOutputFields();
             return;
         }
-        else if (data.price == 0 && data.volume == 0) {
+        else if ((data.price == 0 && data.volume == 0) || data.collateral == 0) {
             $(".parse-status").addClass("error");
             $(".parse-status").html("ERROR : No Items appraised");
             $(".parse-status").show();
