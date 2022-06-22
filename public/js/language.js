@@ -19,7 +19,7 @@ $(function () {
       $('.switch-lang').click(function (event) {
         event.preventDefault();
         var language = $(this).attr("id");
-        if (language == "en" || language =="zh") {
+        if (language == "en" || language =="zh" || language =="jp" || language =="dk") {
         hideAllLanguages();
         $('[lang="'+ language +'"]').toggle()
         // $('[lang="zh"]').toggle();
