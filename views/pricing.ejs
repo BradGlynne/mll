@@ -57,9 +57,9 @@
                     <a id="en" class="switch-lang">&#127468;&#127463;</a>
                     <a id="zh" class="switch-lang">&#127464;&#127475;</a>
                     <a id="jp" class="switch-lang">&#127471;&#127477;</a>
-                    <a id="ko" class="switch-lang">&#127472;&#127479;</a>
+                    <!--<a id="ko" class="switch-lang">&#127472;&#127479;</a>-->
                     <a id="da" class="switch-lang">&#127465;&#127472;</a>
-                    <a id="de" class="switch-lang">&#127465;&#127466;</a>
+                    <!--<a id="de" class="switch-lang">&#127465;&#127466;</a>-->
                   </div>
                 </div>
               </li>
@@ -84,17 +84,17 @@
     <% var current = new Date(); %>
     <div class="main">
       <br>
-      <h2><span lang="en">Per Jump Pricing</span><span lang="zh" style="display: none;">NEEDS TRANSLATION</span></h2>
+      <h2><span lang="en">Per Jump Pricing</span><span lang="zh" style="display: none;">每次跳跃定价</span><span lang="jp" style="display: none">1ジャンプあたりの料金</span><span lang="da" style="display: none">Pris pr. jump</span></h2>
           <table id="per-jump" class="table">
             <tr>
               <th></th>
-              <th><span lang="en">Maximum Volume</span><span lang="zh" style="display: none;">最高体积</span></th>
-              <th><span lang="en">Maximum Collateral</span><span lang="zh" style="display: none;">最高保证金</span></th>
-              <th><span lang="en">High Sec: Price per Warp</span><span lang="zh" style="display: none;">高安：每跳价格</span></th>
-              <th><span lang="en">Low Sec: Price per Warp</span><span lang="zh" style="display: none;">低安：每跳价格</span></th>
-              <th><span lang="en">Null Sec: Price per Warp</span><span lang="zh" style="display: none;">00：每跳价格</span></th>
-              <th><span lang="en">Rush Shipping Surcharge</span><span lang="zh" style="display: none;">加急运输附加费</span></th>
-              <th><span lang="en">Minimum Rush Shipping Price</span><span lang="zh" style="display: none;">最低加急运输价格</span></th>
+              <th><span lang="en">Maximum Volume</span><span lang="zh" style="display: none;">最高体积</span><span lang="jp" style="display: none">最大積載量</span><span lang="da" style="display: none">Maksimal volumen</span></th>
+              <th><span lang="en">Maximum Collateral</span><span lang="zh" style="display: none;">最高保证金</span><span lang="jp" style="display: none">最大担保金</span><span lang="da" style="display: none">Maksimal sikkerhedsbeløb</span></th>
+              <th><span lang="en">High Sec: Price per Warp</span><span lang="zh" style="display: none;">高安：每跳价格</span><span lang="jp" style="display: none">ハイセク：1ワープあたりの料金</span><span lang="da" style="display: none">High Sec: Pris pr. Warp</span></th>
+              <th><span lang="en">Low Sec: Price per Warp</span><span lang="zh" style="display: none;">低安：每跳价格</span><span lang="jp" style="display: none">ローセク：1ワープあたりの料金</span><span lang="da" style="display: none">Low Sec.: Pris pr. Warp</span></th>
+              <th><span lang="en">Null Sec: Price per Warp</span><span lang="zh" style="display: none;">00：每跳价格</span><span lang="jp" style="display: none">ヌルセク：1ワープあたりの料金</span><span lang="da" style="display: none">Null Sec: Pris pr. Warp</span></th>
+              <th><span lang="en">Rush Shipping Surcharge</span><span lang="zh" style="display: none;">加急运输附加费</span><span lang="jp" style="display: none">速達追加割合料金</span><span lang="da" style="display: none">Hasteforsendelse ekstragebyr</span></th>
+              <th><span lang="en">Minimum Rush Shipping Price</span><span lang="zh" style="display: none;">最低加急运输价格</span><span lang="jp" style="display: none">最低速達料金</span><span lang="da" style="display: none">Minimum hasteforsendelsespris</span></th>
             <tr>
               <% services.forEach((service)=>{%>
               <tr>
@@ -146,19 +146,19 @@
             </tbody>
           </table>
           <br>
-          <h2><span lang="en">Fixed BR/DST Prices</span><span lang="zh" style="display: none;">固定偷运/强运价格</span></h2>
+          <h2><span lang="en">Fixed BR/DST Prices</span><span lang="zh" style="display: none;">固定偷运/强运价格</span><span lang="jp" style="display: none">軽トラ/重トラ固定価格</span><span lang="da" style="display: none">Faste BR/DST priser</span></h2>
           <div  class="dataTables_wrapper container-fluid dt-bootstrap4" id="per-jump-overrides-wrapper" value="2">
               <table id="per-jump-overrides" class="table sortable dataTable">
                 <thead>
                 <tr>
-                  <th><span lang="en">Ship Type</span><span lang="zh">船只种类</span></th>
-                  <th><span lang="en">From</span><span lang="zh">起点</span></th>
+                  <th><span lang="en">Ship Type</span><span lang="zh">船只种类</span><span lang="jp" style="display: none">艦種</span><span lang="da" style="display: none">Skibstype</span></th>
+                  <th><span lang="en">From</span><span lang="zh">起点</span><span lang="jp" style="display: none">出発地</span><span lang="da" style="display: none">Fra</span></th>
                   <th> </th>
-                  <th><span lang="en">To</span><span lang="zh">目的地</span></th>
-                  <th><span lang="en">Volume Limit</span><span lang="zh">体积限制</span></th>
-                  <th><span lang="en">Collateral Limit</span><span lang="zh">保证金限制</span></th>
-                  <th><span lang="en">Route Pricing</span><span lang="zh">路线价格</span></th>
-                  <th><span lang="en">Rush Shipping Surcharge</span><span lang="zh">加急运输附加费</span></th>
+                  <th><span lang="en">To</span><span lang="zh">目的地</span><span lang="jp" style="display: none">目的地</span><span lang="da" style="display: none">Til</span></th>
+                  <th><span lang="en">Volume Limit</span><span lang="zh">体积限制</span><span lang="jp" style="display: none">最大積載量</span><span lang="da" style="display: none">Volumengrænse</span></th>
+                  <th><span lang="en">Collateral Limit</span><span lang="zh">保证金限制</span><span lang="jp" style="display: none">最大担保金</span><span lang="da" style="display: none">Sikkerhedsbeløb grænse</span></th>
+                  <th><span lang="en">Route Pricing</span><span lang="zh">路线价格</span><span lang="jp" style="display: none">ルート料金</span><span lang="da" style="display: none">Rutepriser</span></th>
+                  <th><span lang="en">Rush Shipping Surcharge</span><span lang="zh">加急运输附加费</span><span lang="jp" style="display: none">速達料金</span><span lang="da" style="display: none">Hasteforsendelse ekstragebyr</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -183,7 +183,7 @@
               </table>
             </div>
               <br>
-      <h2><span lang="en">Jump Freighter Routes</span><span lang="zh" style="display: none;">跳货路线</span></h2>
+      <h2><span lang="en">Jump Freighter Routes</span><span lang="zh" style="display: none;">跳货路线</span><span lang="jp" style="display: none">JFルート</span><span lang="da" style="display: none">Jump Freighter ruter</span></h2>
       <!-- add class p-switch -->
         <div class="pretty p-switch p-fill" style="float: right">
             <input type="checkbox" id="intraDrone" name="routeType" value="Intra-Drones"/>
@@ -201,16 +201,16 @@
             <table id="jf-routes" class="table sortable dataTable">
               <thead>
                 <tr>
-                    <th><span lang="en">From</span><span lang="zh" style="display: none;">起点</span></th>
+                    <th><span lang="en">From</span><span lang="zh" style="display: none;">起点</span><span lang="jp" style="display: none">出発地</span><span lang="da" style="display: none">Fra</span></th>
                     <th> </th>
-                    <th><span lang="en">To</span><span lang="zh" style="display: none;">目的地</span></th>
-                    <th><span lang="en">Volume Limit</span><span lang="zh" style="display: none;">体积限制</span></th>
-                    <th><span lang="en">Collateral Limit</span><span lang="zh" style="display: none;">保证金限制</span></th>
-                    <th><span lang="en">Route Pricing</span><span lang="zh" style="display: none;">路线价格</span></th>
-                    <th><span lang="en">Collateral Charge</span><span lang="zh" style="display: none;">保证金费率</span></th>
-                    <th><span lang="en">Minimum Reward</span><span lang="zh" style="display: none;">最低奖励</span></th>
-                    <th><span lang="en">Rush Shipping</span><span lang="zh" style="display: none;">加急运输</span></th>
-                    <th><span lang="en">Type</span><span lang="zh" style="display: none;">种类</span></th>
+                    <th><span lang="en">To</span><span lang="zh" style="display: none;">目的地</span><span lang="jp" style="display: none">目的地</span><span lang="da" style="display: none">Til</span></th>
+                    <th><span lang="en">Volume Limit</span><span lang="zh" style="display: none;">体积限制</span><span lang="jp" style="display: none">最大積載量</span><span lang="da" style="display: none">Volumengrænse</span></th>
+                    <th><span lang="en">Collateral Limit</span><span lang="zh" style="display: none;">保证金限制</span><span lang="jp" style="display: none">最大担保金</span><span lang="da" style="display: none">Sikkerhedsbeløb grænse</span></th>
+                    <th><span lang="en">Route Pricing</span><span lang="zh" style="display: none;">路线价格</span><span lang="jp" style="display: none">ルート価格</span><span lang="da" style="display: none">Rutepriser</span></th>
+                    <th><span lang="en">Collateral Charge</span><span lang="zh" style="display: none;">保证金费率</span><span lang="jp" style="display: none">担保追加割合料金</span><span lang="da" style="display: none">Sikkerhedsbeløb gebyr</span></th>
+                    <th><span lang="en">Minimum Reward</span><span lang="zh" style="display: none;">最低奖励</span><span lang="jp" style="display: none">最低報酬</span><span lang="da" style="display: none">Minimumsbeløning</span></th>
+                    <th><span lang="en">Rush Shipping</span><span lang="zh" style="display: none;">加急运输</span><span lang="jp" style="display: none">速達</span><span lang="da" style="display: none">Hasteforsendelse</span></th>
+                    <th><span lang="en">Type</span><span lang="zh" style="display: none;">种类</span><span lang="jp" style="display: none">種類</span><span lang="da" style="display: none">Type</span></th>
                 </tr>
               </thead>
               <tbody>

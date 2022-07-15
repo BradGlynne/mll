@@ -46,9 +46,9 @@
                           <a id="en" class="switch-lang">&#127468;&#127463;</a>
                           <a id="zh" class="switch-lang">&#127464;&#127475;</a>
                           <a id="jp" class="switch-lang">&#127471;&#127477;</a>
-                          <a id="ko" class="switch-lang">&#127472;&#127479;</a>
+                          <!--<a id="ko" class="switch-lang">&#127472;&#127479;</a>-->
                           <a id="da" class="switch-lang">&#127465;&#127472;</a>
-                          <a id="de" class="switch-lang">&#127465;&#127466;</a>
+                          <!--<a id="de" class="switch-lang">&#127465;&#127466;</a>-->
                         </div>
                       </div>
                     </li>
@@ -79,24 +79,26 @@
             <h6 style="margin-top: 10px; font-size: 0.7rem;"><span lang="en">(Based on averages of the last 50 contracts)</span><span lang="zh" style="display: none;">（基于最近50个合同的平均值）</span><span lang="jp" style="display: none;">過去50件の平均を基に算出</span><span lang="da" style="display: none;">(BASERET PÅ GENNEMSNITTET AF SIDSTE 50 KONTRAKTER)</span></h6>
         </div>
         <div class="calculator">
-            <h1><span lang="en">Custom Request Form</span><span lang="zh" style="display: none;">定制服务表格</span></h1>
+            <h1><span lang="en">Custom Request Form</span><span lang="zh" style="display: none;">定制服务表格</span><span lang="jp" style="display: none">その他輸送先指定</span><span lang="da" style="display: none">Brugerdefineret anmodningsformular</span></h1>
             <table>
               <tr>
-                <td><label class="system-input"><span lang="en">Eve Character Name:</span><span lang="zh" style="display: none;">EVE角色名:</span></label></td>
+                <td><label class="system-input"><span lang="en">Eve Character Name:</span><span lang="zh" style="display: none;">EVE角色名:</span><span lang="jp" style="display: none">EVEキャラクター名</span><span lang="da" style="display: none">EVE karakter navn:</span></label></td>
                     <td><label class="system-input"><div class="input-field">
                         <input type="text" id="eveCharacterName" spellcheck="false">
                     </div></label></td>
-                <td><label class="system-input"><span lang="en">Discord ID:</span><span lang="zh" style="display: none;">Discord ID：</span></label>
+                <td><label class="system-input"><span lang="en">Discord ID:</span><span lang="zh" style="display: none;">Discord ID：</span><span lang="jp" style="display: none">DiscordID</span><span lang="da" style="display: none">Discord ID:</span></label>
                     <span lang="en"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
                       title="Please put your full discord name + ID here. e.g. Brad#2222"></span><span lang="zh" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
-                        title="请输入您的完整Discord昵称+数字ID，例如Brad#2222"></span></td>
+                        title="请输入您的完整Discord昵称+数字ID，例如Brad#2222"></span><span lang="jp" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                            title="ここにDiscordID名をすべて記入してください。例：Brad#2222"></span><span lang="da" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                                title="Angiv venligst dit fulde discord navn + ID her f.eks. Brad#2222"></span></td>
                     <td><label class="system-input"><div class="input-field">
                         <input type="text" id="discordId" spellcheck="false">
                     </div></label></td>
-
+                    
             </tr>
             <tr>
-              <td><label class="system-input"><span lang="en">Start:</span><span lang="zh" style="display: none;">起点</span><span lang="jp" style="display: none;">出発地</span></label></td>
+              <td><label class="system-input"><span lang="en">Start:</span><span lang="zh" style="display: none;">起点</span><span lang="jp" style="display: none;">出発地</span><span lang="dk">Start:</span></label></td>
                 <td>
                   <label class="system-input start"><div class="input-field">
                     <input type="text" id="start" spellcheck="false">
@@ -105,7 +107,7 @@
                 </div>
             </label>
         </td>
-            <td><label class="system-input"><span lang="en">Destination:</span><span lang="zh" style="display: none;">目的地</span><span lang="jp" style="display: none;">目的地</span></label></td>
+            <td><label class="system-input"><span lang="en">Destination:</span><span lang="zh" style="display: none;">目的地</span><span lang="jp" style="display: none;">目的地</span><span lang="dk">Bestemmelsessted:</span></label></td>
               <td><label class="system-input finish">
                 <div class="input-field">
                     <input type="text" id="finish" spellcheck="false">
@@ -116,11 +118,14 @@
           </label></td>
         </tr>
         <tr>
-          <td><label class="system-input"><span lang="en">Start & Destination both NPC/PH Structures?</span><span lang="zh" style="display: none;">起点和目的地均为NPC或者PH建筑？</span></label>
+          <td><label class="system-input"><span lang="en">Start & Destination both NPC/PH Structures?</span><span lang="zh" style="display: none;">起点和目的地均为NPC或者PH建筑？</span><span lang="jp" style="display: none">出発地と目的地は両方ともNPC/PHストラクチャですか？</span><span lang="da" style="display: none">Start og destination er både NPC/PH-strukturer?</span></label>
             </td>
             <td><input type="checkbox" id="structureType" style="margin-left: 10px">
                 <span lang="en"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
-              title="If it's a citadel PH do not own, chances are we do not have docking rights"></span></td>
+              title="If it's a citadel PH do not own, chances are we do not have docking rights"></span><span lang="zh" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                  title="如果是非PH所有的建筑，我们可能没有驻留权限"></span><span lang="jp" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                      title="PH所有のストラクチャではない場合、私たちに入港権限がない可能性があります。"></span><span lang="da" style="display: none;"><img class="info" src="/img/info-button.png" style="height: 15px; margin-left: 5px;opacity: 0.75;cursor: pointer;"
+                          title="Hvis det er et citadel, som PH ikke ejer, er der stor sandsynlighed for, at vi ikke har docking-rettigheder"></span></td>
         <td><label class="system-input"><span lang="en">Rush Shipping required: </span><span lang="zh" style="display: none;">加急服务需要：</span></label></td>
             <td><label class="system-input"><div class="input-field">
                 <input type="checkbox" id="rushCheckbox">
@@ -130,27 +135,26 @@
 
     </tr>
 
-
         </table>
             <div class="route-limits" style="flex-wrap: wrap;">
-              <h3 class="info-text" style="color: black;margin-top: 0px"><span lang="en">Submitting this form notifies our pilots of your custom request, please ensure details are correct before submitting.</span><span lang="zh" style="display: none;">提交次表格会将您的定制需求通知我们的飞行员，请确保信息正确后再提交。</span></h3>
-              <h3><span lang="en">No assembled containers/ships!</span><span lang="zh" style="display: none;">不能有组装好的箱子或者成船！</span></h3>
+              <h3 class="info-text" style="color: black;margin-top: 0px"><span lang="en">Submitting this form notifies our pilots of your custom request, please ensure details are correct before submitting.</span><span lang="zh" style="display: none;">提交次表格会将您的定制需求通知我们的飞行员，请确保信息正确后再提交。</span><span lang="jp" style="display: none">このフォームを送信すると、パイロットにあなたの輸送リクエストが通知されます。すべての詳細がしっかりと記入されてることを確認してから送信してください。</span><span lang="da" style="display: none">INDSENDELSE AF DENNE FORMULAR MEDDELER VORES PILOTER OM DIN BRUGERDEFINERET ANMODNING. SØRG VENLIGST FOR, AT DETALJERNE ER KORREKTE, FØR DU INDSENDER.</span></h3>
+              <h3><span lang="en">No assembled containers/ships!</span><span lang="zh" style="display: none;">不能有组装好的箱子或者成船！</span><span lang="jp" style="display: none">組み立て済みのコンテナと船を含めないでください</span><span lang="da" style="display: none">INGEN SAMLEDE CONTAINERE/SKIBE!</span></h3>
             </div>
             <label class="item-list">
-                <span lang="en">Item List:</span><span lang="zh" style="display: none;">物品列表:</span>
+                <span lang="en">Item List:</span><span lang="zh" style="display: none;">物品列表:</span><span lang="jp" style="display: none">アイテムリスト</span><span lang="da" style="display: none">Vareliste:</span>
                 <textarea placeholder="Item List" name="itemList" id="item-list"></textarea>
             </label>
             <div class="additional-wrapper">
                 <label class="additional">
-                    <span lang="en">Additional Volume</span><span lang="zh" style="display: none;">额外体积</span>
+                    <span lang="en">Additional Volume</span><span lang="zh" style="display: none;">额外体积</span><span lang="jp" style="display: none">追加積載量</span><span lang="da" style="display: none">Ekstra volumen</span>
                     <input type="text" placeholder="Additional Volume" id="additional-volume" value="0">
                 </label>
                 <label class="additional">
-                    <span lang="en">Additional Collateral</span><span lang="zh" style="display: none;">额外保证金</span>
+                    <span lang="en">Additional Collateral</span><span lang="zh" style="display: none;">额外保证金</span><span lang="jp" style="display: none">追加担保金</span><span lang="da" style="display: none">Yderligere sikkerhedsbeløb</span>
                     <input type="text" placeholder="Additional Collateral" id="additional-collateral" value="0">
                 </label>
-                <button onclick="clearStuff()" id="clear"><span lang="en">Clear</span><span lang="zh" style="display: none;">清除</span></button>
-                <button id="submit" onclick="submit()"><span lang="en">Submit</span><span lang="zh" style="display: none;">提交</span></button>
+                <button onclick="clearStuff()" id="clear"><span lang="en">Clear</span><span lang="zh" style="display: none;">清除</span><span lang="jp" style="display: none">クリア</span><span lang="da" style="display: none">Slet</span></button>
+                <button id="submit" onclick="submit()"><span lang="en">Submit</span><span lang="zh" style="display: none;">提交</span><span lang="jp" style="display: none">決定</span><span lang="da" style="display: none">Indsend</span></button>
             </div>
         </div>
 
@@ -160,24 +164,24 @@
             <mark class="parse-status success">Parsed successfully</mark>
             <table>
                 <tr>
-                    <th><span lang="en">Ship From</span><span lang="zh" style="display: none;">运输起点</span></th>
-                    <th><span lang="en">Ship To</span><span lang="zh" style="display: none;">运输目的地</span></th>
+                    <th><span lang="en">Ship From</span><span lang="zh" style="display: none;">运输起点</span><span lang="jp" style="display: none">出発地</span><span lang="da" style="display: none">Forsendelse fra</span></th>
+                    <th><span lang="en">Ship To</span><span lang="zh" style="display: none;">运输目的地</span><span lang="jp" style="display: none">目的地</span><span lang="da" style="display: none">Forsendelse til</span></th>
                 </tr>
                 <tr>
                     <td id="ship-from">-</td>
                     <td id="ship-to">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Rush Target Date</span><span lang="zh" style="display: none;">加急目标日期</span></th>
-                    <th><span lang="en">Total Volume</span><span lang="zh" style="display: none;">总体积</span></th>
+                    <th><span lang="en">Rush Target Date</span><span lang="zh" style="display: none;">加急目标日期</span><span lang="jp" style="display: none">速達</span><span lang="da" style="display: none">Haster måldato</span></th>
+                    <th><span lang="en">Total Volume</span><span lang="zh" style="display: none;">总体积</span><span lang="jp" style="display: none">総積載量</span><span lang="da" style="display: none">Samlet volumen</span></th>
                 </tr>
                 <tr>
                     <td id="rush-status">-</td>
                     <td id="volume">-</td>
                 </tr>
                 <tr>
-                    <th><span lang="en">Jita Sell Price</span><span lang="zh" style="display: none;">吉他卖单价</span></th>
-                    <th><span lang="en">Contract Collateral</span><span lang="zh" style="display: none;">合同保证金</span></th>
+                    <th><span lang="en">Jita Sell Price</span><span lang="zh" style="display: none;">吉他卖单价</span><span lang="jp" style="display: none">ジタ価格</span><span lang="da" style="display: none">Jita salgspris</span></th>
+                    <th><span lang="en">Contract Collateral</span><span lang="zh" style="display: none;">合同保证金</span><span lang="jp" style="display: none">担保金</span><span lang="da" style="display: none">Kontraktsikkerhed</span></th>
                 </tr>
                 <tr>
                     <td id="price">-</td>
