@@ -115,19 +115,19 @@
                     <td>Not Available</td>
                     <%}
                     else {%>
-                    <td><%=parseInt(service.highsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK/m<sup>3</sup></td>
+                    <td><%=parseInt(service.highsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                   <%}%>
                   <%if(!service.runsIn.lowsec){%>
                     <td>Not Available</td>
                     <%}
                     else {%>
-                    <td><%=parseInt(service.lowsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK/m<sup>3</sup></td>
+                    <td><%=parseInt(service.lowsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                   <%}%>
                   <%if(!service.runsIn.nullsec){%>
                     <td>Not Available</td>
                     <%}
                     else {%>
-                    <td><%=parseInt(service.nullsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK/m<sup>3</sup></td>
+                    <td><%=parseInt(service.nullsecPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> ISK</td>
                   <%}%>
                   <%if(!service.isRush){%>
                     <td>Not Available</td>
