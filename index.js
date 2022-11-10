@@ -1793,7 +1793,11 @@ async function mailContracts() {
             }
 
             toMail.body = process.env.MAIL_BODY_DELIVERED;
-            toMail.subject = process.env.MAIL_SUBJECT_DELIVERED + " " + contract.key;
+            toMail.subject = process.env.MAIL_SUBJECT_DELIVERED;
+
+            if (contract.key) {
+                toMail.subject = toMail.subject + " " + contract.key;
+            }
 
 
             headers = { 'Content-type': 'application/json', 'Accept': 'text/plain' }
