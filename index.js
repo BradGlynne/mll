@@ -1796,7 +1796,7 @@ async function mailContracts() {
             toMail.subject = process.env.MAIL_SUBJECT_DELIVERED;
 
             if (contract.key) {
-                toMail.subject = toMail.subject + " " + contract.key;
+                toMail.subject = toMail.subject + " - " + contract.key;
             }
 
 
