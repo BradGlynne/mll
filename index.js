@@ -1724,30 +1724,30 @@ async function mailContracts() {
             else {
                 if (action == "approve") {
                     toMail.body = process.env.MAIL_BODY_RECEIEVED;
-                    toMail.subject = process.env.MAIL_SUBJECT_RECEIVED;
+                    toMail.subject = process.env.MAIL_SUBJECT_RECEIVED + " - " + contract.key;
                 }
                 else if (action == "delta error") {
                     if (rewardDelta < 0.9) {
                         toMail.body = process.env.MAIL_BODY_REWARD;
-                        toMail.subject = process.env.MAIL_SUBJECT_REWARD;
+                        toMail.subject = process.env.MAIL_SUBJECT_REWARD + " - " + contract.key;
                     }
                     else if (collateralDelta < 0.9) {
                         toMail.body = process.env.MAIL_BODY_COLLATERAL;
-                        toMail.subject = process.env.MAIL_SUBJECT_COLLATERAL;
+                        toMail.subject = process.env.MAIL_SUBJECT_COLLATERAL + " - " + contract.key;
                     }
                     else {
                         toMail.body = process.env.MAIL_BODY_VOLUME;
-                        toMail.subject = process.env.MAIL_SUBJECT_VOLUME;
+                        toMail.subject = process.env.MAIL_SUBJECT_VOLUME + " - " + contract.key;
 
                     }
                 }
                 else if (action == "route error") {
                     toMail.body = process.env.MAIL_BODY_ROUTE;
-                    toMail.subject = process.env.MAIL_SUBJECT_ROUTE;
+                    toMail.subject = process.env.MAIL_SUBJECT_ROUTE + " - " + contract.key;
                 }
                 else if (action == "type error") {
                     toMail.body = process.env.MAIL_BODY_TYPE;
-                    toMail.body = process.env.MAIL_SUBJECT_TYPE;
+                    toMail.body = process.env.MAIL_SUBJECT_TYPE + " - " + contract.key;
                 }
             }
 
@@ -1793,7 +1793,7 @@ async function mailContracts() {
             }
 
             toMail.body = process.env.MAIL_BODY_DELIVERED;
-            toMail.subject = process.env.MAIL_SUBJECT_DELIVERED;
+            toMail.subject = process.env.MAIL_SUBJECT_DELIVERED + " " + contract.key;
 
 
             headers = { 'Content-type': 'application/json', 'Accept': 'text/plain' }
