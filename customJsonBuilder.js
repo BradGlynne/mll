@@ -1,6 +1,6 @@
 exports.buildJson = function (origin, destination, isRush, rushTargetDate, volume, collateral, eveCharacterName, discordId, structureType, submittedDate, discordRoleId){
   let rushDate = 'N/A'
-  if (isRush) {
+  if (isRush && rushTargetDate) {
     rushDate = rushTargetDate.toLocaleString('en-GB', {timeZone: 'UTC'})
   }
   let structureText = "Yes";
