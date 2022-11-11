@@ -1686,7 +1686,7 @@ async function mailContracts() {
         let contracts = await Contracts.find({ mailed: false, status: "outstanding" }).exec();
         for (contract of contracts) {
 
-            if (count > 3) {
+            if (count > 0) {
                 break;
             }
             
@@ -1786,7 +1786,7 @@ async function mailContracts() {
         contracts = await Contracts.find({ mailed: true, deliveryAcknowledged: false, status: "finished" }).exec();
         for (contract of contracts) {
           //contract.issuerID
-          if (count > 3) {
+          if (count > 0) {
             break;
             }
             let toMail = {
