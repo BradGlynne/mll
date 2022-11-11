@@ -1824,7 +1824,7 @@ async function mailContracts() {
         }
     }
 
-        console.log("All mails sent");
+        console.log(count + " mail(s) sent");
     }
     //discordNotification();
 }
