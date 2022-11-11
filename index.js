@@ -1685,7 +1685,11 @@ async function mailContracts() {
 
         let contracts = await Contracts.find({ mailed: false, status: "outstanding" }).exec();
         for (contract of contracts) {
-            while (count < 5) {
+
+            if (count > 3) {
+                break;
+            }
+            
             let action = "approve";
             let noCode = false;
             if (!contract.appraisalReward && !contract.appraisalCollateral && !contract.appraisalVolume) {
@@ -1777,13 +1781,14 @@ async function mailContracts() {
             catch (err) {
                 console.log(err)
             }
-        }
+
         }
         contracts = await Contracts.find({ mailed: true, deliveryAcknowledged: false, status: "finished" }).exec();
         for (contract of contracts) {
-            while (count < 5) {
           //contract.issuerID
-
+          if (count > 3) {
+            break;
+            }
             let toMail = {
                 "approved_cost": 0,
                 "recipients": [
@@ -1822,7 +1827,6 @@ async function mailContracts() {
             }
 
 
-        }
     }
 
         console.log(count + " mail(s) sent");
