@@ -1674,14 +1674,14 @@ async function getCharacterName(id) {
 }
 
 async function mailContracts() {
-
+    var count = 0 ;
     const currentSettings = await Settings.findOne({}).exec();
     if (currentSettings.mailsEnabled == false) {
         console.log("skipping mails");
         return;
     }
     else {
-
+        while (count < 5) {
         console.log("Starting mailing");
 
         let contracts = await Contracts.find({ mailed: false, status: "outstanding" }).exec();
@@ -1772,6 +1772,7 @@ async function mailContracts() {
                 const filter = { contractID: contract.contractID };
                 const update = { mailed: true, validationStatus: action };
                 await Contracts.findOneAndUpdate(filter, update);
+                count++;
             }
             catch (err) {
                 console.log(err)
@@ -1813,6 +1814,7 @@ async function mailContracts() {
                 const filter = { contractID: contract.contractID };
                 const update = { deliveryAcknowledged: true };
                 await Contracts.findOneAndUpdate(filter, update);
+                count++
             }
             catch (err) {
                 console.log(err)
@@ -1820,6 +1822,7 @@ async function mailContracts() {
 
 
         }
+    }
 
         console.log("All mails sent");
     }
