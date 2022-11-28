@@ -1,5 +1,6 @@
 const jsonBuilder = require("./jsonBuilder");
 const customJsonBuilder = require("./customJsonBuilder");
+const brDstJsonBuilder = require("./brDstJsonBuilder");
 const moment = require('moment');
 require('dotenv').config({ path: __dirname + '/.env' })
 // process.env.NODE_ENV = 'production';
@@ -1850,7 +1851,8 @@ async function discordNotification() {
         let contracts = await Contracts.find({ discordNotified: false, status: "outstanding" }).exec();
         for (contract of contracts) {
           let serviceType = contract.description.split("-")[1];
-
+          let service = contract.description.split("-")[0];
+          let discordWebhookURL;
           if (serviceType == 'R' && Boolean(contract.validationStatus)) {
             // this is now a rush contract and therefore a discord notification is required
               let notificationJson = jsonBuilder.buildJson(
@@ -1867,11 +1869,12 @@ async function discordNotification() {
                   process.env.DISCORD_ROLE_ID)
 
             //console.log(JSON.stringify(notificationJson));
+            discordWebhookURL = process.env.DISCORD_SERVER_ID + '/' + process.env.DISCORD_WEBHOOK_TOKEN;
 
             headers = { 'Content-type': 'application/json', 'Accept': 'text/plain' }
 
             var options = {
-                uri: 'https://discord.com/api/webhooks/' + process.env.DISCORD_SERVER_ID + '/' + process.env.DISCORD_WEBHOOK_TOKEN,
+                uri: 'https://discord.com/api/webhooks/' + discordWebhookURL,
                 method: 'POST',
                 json: notificationJson
             };
@@ -1890,6 +1893,56 @@ async function discordNotification() {
           else if (serviceType == 'R' && !contract.validationStatus){
             console.log("Discord method has run before contract has been validated, will exit without notification.");
           }
+          // New BR/DST logic for discord notifications BG - 28/11/22
+          else if ((service == 'Blockade Runner' || service == 'Deep Space Transport') && Boolean(contract.validationStatus)) {
+            // this is now a rush contract and therefore a discord notification is required
+              let discordSvcType;
+              
+              if (service == 'Blockade Runner')
+              {
+                discordSvcType = process.env.BR_DISCORD_ROLE_ID;
+                discordWebhookURL = process.env.BR_DISCORD_SERVER_ID + '/' + process.env.BR_DISCORD_WEBHOOK_TOKEN;
+              }
+              else if(service == 'Deep Space Transport') {
+                discordSvcType = process.env.DST_DISCORD_ROLE_ID;
+                discordWebhookURL = process.env.DST_DISCORD_SERVER_ID + '/' + process.env.DST_DISCORD_WEBHOOK_TOKEN;
+              }
+              let notificationJson = brDstJsonBuilder.buildJson(
+                contract.service,
+                contract.issuerName,
+                contract.start,
+                contract.end,
+                contract.volume,
+                contract.status,
+                contract.validationStatus,
+                contract.date,
+                contract.issuerID,
+                discordSvcType)
+
+
+                headers = { 'Content-type': 'application/json', 'Accept': 'text/plain' }
+
+            var options = {
+                uri: 'https://discord.com/api/webhooks/' + discordWebhookURL,
+                method: 'POST',
+                json: notificationJson
+            };
+
+              try {
+                await request.post(options);
+                const filter = { contractID: contract.contractID };
+                const update = { discordNotified: true, discordReminderSent: true, rushContractExpired: true};
+                await Contracts.findOneAndUpdate(filter, update);
+              }
+              catch (err) {
+                console.log(err)
+              }
+            console.log ('BR/DST Discord Notification for ' + contract.issuerName + ' being sent.')
+          }
+          else if ((service == 'Blockade Runner' || service == 'Deep Space Transport') && !contract.validationStatus) {
+            console.log("BR/DST: Discord method has run before contract has been validated, will exit without notification.");
+          }
+          // END OF NEW BR/DST Logic 28/11/22
           else {
             try {
                 const filter = { contractID: contract.contractID };
