@@ -1266,7 +1266,7 @@ app.get('/auth/callback', passport.authenticate('eveOnline', { failureRedirect: 
 
 
 app.get("/contracts", authHauler, async (req, res) => {
-    let contracts = await Contracts.find({});
+    let contracts = await Contracts.find({date: {$gt: new Date(Date.now() - 30*24*60*60 * 1000)}});
     let routes = [];
     const current = Date.parse(new Date());
     contracts.forEach(contract => {

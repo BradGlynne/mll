@@ -29,7 +29,12 @@ nav ul li {
 }
 
 nav ul li:hover {
-    color: #6287ff
+    text-decoration: none;
+
+}
+a:hover {
+  text-decoration: none;
+  color: #eee;
 }
 
 .main {
