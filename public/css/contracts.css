@@ -6,7 +6,7 @@ html , body {
 
 
 
-nav {
+/**nav {
     position: sticky;
     top: 0;
     padding: 20px 0;
@@ -30,7 +30,7 @@ nav ul li {
 
 nav ul li:hover {
     color: #6287ff
-}
+}**/
 
 .main {
     padding: 10px 30px;
