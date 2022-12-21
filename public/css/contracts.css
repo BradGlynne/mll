@@ -32,6 +32,9 @@ nav ul li:hover {
     text-decoration: none;
 
 }
+a:hover {
+  
+}
 
 .main {
     padding: 10px 30px;
