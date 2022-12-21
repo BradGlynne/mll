@@ -26,11 +26,12 @@ nav ul li {
     display: inline-block;
     cursor: pointer;
     transition: all 0.2s;
-}
+}**/
 
 nav ul li:hover {
-    color: #6287ff
-}**/
+    text-decoration: none;
+
+}
 
 .main {
     padding: 10px 30px;
