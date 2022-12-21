@@ -6,7 +6,7 @@ html , body {
 
 
 
-/**nav {
+nav {
     position: sticky;
     top: 0;
     padding: 20px 0;
@@ -26,7 +26,7 @@ nav ul li {
     display: inline-block;
     cursor: pointer;
     transition: all 0.2s;
-}**/
+}
 
 nav ul li:hover {
     text-decoration: none;
