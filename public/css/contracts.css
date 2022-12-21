@@ -33,7 +33,8 @@ nav ul li:hover {
 
 }
 a:hover {
-  
+  text-decoration: none;
+  color: #eee;
 }
 
 .main {
