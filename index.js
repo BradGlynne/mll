@@ -1502,14 +1502,10 @@ async function processContracts(user) {
         let foundContract = await Contracts.find({contractID: contract.contract_id})
         if (foundContract && foundContract.status != contract.status) {
             newUserContracts.push(contract);
-            try {
-                contract.acceptor_name = await getCharacterName(contract.acceptor_id);
-            } catch (err) {
-                contract.acceptor_name = "-";
-            }
         }
 
         if (isNaN(foundContract.start)) {
+            console.log(`Found Contract Start is: ${foundContract.start}    Skipping`)
             continue;
         }
 
@@ -1526,9 +1522,12 @@ async function processContracts(user) {
             contract.acceptor_name = "-";
         }
         try {
+            console.log(`Processing Start Location ${contract.start_location_id}`)
             contract.start_location_id = await getLocationName(contract.start_location_id, user)||"Unknown Structure";
+            console.log(`Processed Start Location ${contract.start_location_id}`)
         }
         catch (err) {
+            console.log(`Error processing Start Location ${contract.start_location_id}`)
             contract.start_location_id = "-";
         }
         try {
