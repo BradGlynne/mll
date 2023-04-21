@@ -1499,7 +1499,7 @@ async function processContracts(user) {
     
     for (contract of userContracts) {
 
-        let foundContract = await Contracts.find({contractID: contract.contract_id}).exec()
+        let foundContract = await Contracts.find({contractID: contract.contract_id}).exec();
         if (foundContract) {
             if (isNaN(foundContract.start)) {
                 console.log(`Found Contract Start is: ${foundContract.start}    Skipping`)
