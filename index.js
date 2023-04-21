@@ -1500,15 +1500,17 @@ async function processContracts(user) {
     for (contract of userContracts) {
 
         let foundContract = await Contracts.find({contractID: contract.contract_id})
-        if (foundContract && foundContract.status != contract.status) {
-            newUserContracts.push(contract);
+        if (foundContract) {
+            if (isNaN(foundContract.start)) {
+                console.log(`Found Contract Start is: ${foundContract.start}    Skipping`)
+                continue;
+            }
+            
+            if (foundContract.status != contract.status) {
+                newUserContracts.push(contract);
+            }
         }
-
-        if (isNaN(foundContract.start)) {
-            console.log(`Found Contract Start is: ${foundContract.start}    Skipping`)
-            continue;
-        }
-
+        
         try {
             contract.issuer_name = await getCharacterName(contract.issuer_id);
         }
