@@ -1500,7 +1500,7 @@ async function processContracts(user) {
     for (contract of userContracts) {
 
         let foundContract = await Contracts.find({contractID: contract.contract_id})
-        if (foundContract) {
+        if (foundContract != null) {
             if (isNaN(foundContract.start)) {
                 console.log(`Found Contract Start is: ${foundContract.start}    Skipping`)
                 continue;
