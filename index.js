@@ -1503,7 +1503,7 @@ async function processContracts(user) {
         console.log(`${foundContract}`);
         if (foundContract) {
             if (isNaN(foundContract.start)) {
-                console.log(`Found Contract Start is: ${foundContract.start}    Skipping`);
+                console.log(`Found Contract Start is shit: ${foundContract.start}    Skipping`);
                 continue;
             }
             
