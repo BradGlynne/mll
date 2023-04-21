@@ -1496,33 +1496,20 @@ async function processContracts(user) {
     console.log("Processing Contracts");
 
     newUserContracts = []
-
-    const dbContracts = await Contracts.find({}).exec();
-
+    
     for (contract of userContracts) {
 
-        let found = false;
-        let foundContract = null;
-
-        for (dbContract of dbContracts) {
-            if (dbContract.contractID == contract.contract_id) {
-                found = true;
-                foundContract = dbContract;
-                if (dbContract.status != contract.status) {
-                    dbContract.status = contract.status;
-                    newUserContracts.push(contract);
-                    try {
-                        contract.acceptor_name = await getCharacterName(contract.acceptor_id);
-                    }
-                    catch (err) {
-                        contract.acceptor_name = "-";
-                    }
-                }
-                break;
+        let foundContract = await Contracts.find({contractID: contract.contract_id})
+        if (foundContract && foundContract.status != contract.status) {
+            newUserContracts.push(contract);
+            try {
+                contract.acceptor_name = await getCharacterName(contract.acceptor_id);
+            } catch (err) {
+                contract.acceptor_name = "-";
             }
         }
 
-        if (found && isNaN(foundContract.start)) {
+        if (isNaN(foundContract.start)) {
             continue;
         }
 
