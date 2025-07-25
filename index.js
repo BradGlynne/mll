@@ -1465,7 +1465,8 @@ async function getAllContracts(user) {
         console.log(contracts.length);
         userContracts = userContracts.concat(contracts);
         currentPage += 1;
-    } while (contracts.length != 0);
+      } while (contracts.length == 1000);  
+//    } while (contracts.length != 0);
 }
 
 async function getContracts(user, page) {
